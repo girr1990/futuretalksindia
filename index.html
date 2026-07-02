@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23183d2c%22/><text x=%2250%22 y=%2268%22 font-size=%2248%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23e8962a%22 font-family=%22Georgia%22>FT</text></svg>">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>FutureTalks India — AI Education, Products & Consulting</title>
 <meta name="description" content="FutureTalks India teaches India what's actually possible with AI — through content, real products, and hands-on consulting. For graduates, professionals, and enterprises.">
@@ -563,7 +564,7 @@ footer{background:var(--ink);padding:52px 24px 36px}
         <p>FutureTalks India is founded by <strong>Rahul Choudhary</strong> — 14+ years across TCS, Genpact, and Accenture, currently serving as <strong>Global Finance Transformation Lead</strong> at a leading S&P 500 company.</p>
         <p>He holds a <strong>Lean Six Sigma Black Belt</strong> and an MBA in Analytics & Data Science. Every framework, product, and piece of content we publish comes from real transformation work on real enterprise systems — not from a whiteboard in a strategy firm.</p>
         <p>The mission is personal: make AI education genuinely accessible to the English-speaking Indian professional who's being left behind by content built for engineers in San Francisco.</p>
-        <div class="about-reg">⏳ FutureTalks India Pvt Ltd — registration pending</div>
+        <div class="about-reg">✅ FutureTalks India Private Limited — incorporated 2026</div>
         <div style="margin-top:32px">
           <div class="about-card">
             <div class="about-row"><span class="about-lbl">Founded</span><span class="about-val">2026, Bengaluru</span></div>
@@ -590,6 +591,54 @@ footer{background:var(--ink);padding:52px 24px 36px}
 </section>
 
 <!-- CONTACT -->
+<!-- ===== COMING UP (dynamic: managed from Supabase site_updates table, no redeploy needed) ===== -->
+<section id="coming-up" style="background:var(--cream);padding:0;display:none;">
+  <div style="max-width:1080px;margin:0 auto;padding:72px 24px;">
+    <div style="text-align:center;margin-bottom:36px;">
+      <div style="color:var(--saffron);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:12px;margin-bottom:10px;">Coming up</div>
+      <h2 style="font-family:var(--font-serif);font-size:32px;color:var(--forest);margin:0;">What's next at FutureTalks</h2>
+    </div>
+    <div id="cu-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;"></div>
+  </div>
+</section>
+<script>
+(function(){
+  var SB_URL="https://ilmedsvgatzyfmpgzksk.supabase.co";
+  var SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlsbWVkc3ZnYXR6eWZtcGd6a3NrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI1ODM5NTQsImV4cCI6MjA5ODE1OTk1NH0.ky6P_FDNKFPAN-ngyN6kWawVTT4LVrx-sbsTjOzzcLs";
+  function ytId(u){var m=(u||"").match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{6,})/);return m?m[1]:null;}
+  function esc(s){var d=document.createElement("div");d.textContent=s||"";return d.innerHTML;}
+  var TYPE_LABEL={session:"Live Session",podcast:"Podcast",reel:"Reel",video:"Video",announcement:"Announcement"};
+  fetch(SB_URL+"/rest/v1/site_updates?active=eq.true&order=sort_order.asc,created_at.desc&limit=6",
+    {headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY}})
+  .then(function(r){return r.ok?r.json():[];})
+  .then(function(rows){
+    if(!rows||!rows.length)return;
+    var grid=document.getElementById("cu-grid");
+    rows.forEach(function(it){
+      var card=document.createElement("div");
+      card.style.cssText="background:#fff;border:1px solid var(--line,#e5e0d5);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;";
+      var media="";
+      var vid=ytId(it.link_url);
+      if(vid){
+        media='<div style="position:relative;padding-top:56.25%;"><iframe src="https://www.youtube.com/embed/'+vid+'" style="position:absolute;inset:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy" title="'+esc(it.title)+'"></iframe></div>';
+      }
+      var label=TYPE_LABEL[it.type]||"Update";
+      var dateHtml=it.date_text?'<div style="color:var(--saffron);font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px;">'+esc(label)+' · '+esc(it.date_text)+'</div>':'<div style="color:var(--saffron);font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px;">'+esc(label)+'</div>';
+      var linkHtml="";
+      if(it.link_url&&!vid){linkHtml='<a href="'+esc(it.link_url)+'" target="_blank" rel="noopener" style="color:var(--forest);font-weight:700;font-size:14px;text-decoration:none;margin-top:auto;">'+(it.type==="reel"?"Watch the reel →":"Learn more →")+'</a>';}
+      if(it.link_url&&it.link_url.charAt(0)==="#"){linkHtml='<a href="'+esc(it.link_url)+'" style="color:var(--forest);font-weight:700;font-size:14px;text-decoration:none;margin-top:auto;">Register →</a>';}
+      card.innerHTML=media+'<div style="padding:22px;display:flex;flex-direction:column;flex:1;">'+dateHtml
+        +'<h3 style="font-family:var(--font-serif);font-size:19px;color:var(--forest);margin:0 0 8px;">'+esc(it.title)+'</h3>'
+        +(it.description?'<p style="color:#5a5f56;font-size:14px;line-height:1.6;margin:0 0 14px;">'+esc(it.description)+'</p>':"")
+        +linkHtml+'</div>';
+      grid.appendChild(card);
+    });
+    document.getElementById("coming-up").style.display="block";
+  }).catch(function(){});
+})();
+</script>
+<!-- ===== END COMING UP ===== -->
+
 <!-- ===== REGISTER / JOIN SECTION (saves to Supabase ft_leads then pay) ===== -->
 <section id="join" style="background:var(--forest);padding:72px 24px;color:#fff;">
   <div style="max-width:620px;margin:0 auto;text-align:center;">
@@ -660,7 +709,7 @@ footer{background:var(--ink);padding:52px 24px 36px}
 <script>
 (function(){
   var SUPABASE_URL="https://ilmedsvgatzyfmpgzksk.supabase.co";
-  var SUPABASE_KEY="sb_publishable_BLavB-vaOXjszlSz1t0ByA_vbWwhlYv";
+  var SUPABASE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlsbWVkc3ZnYXR6eWZtcGd6a3NrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI1ODM5NTQsImV4cCI6MjA5ODE1OTk1NH0.ky6P_FDNKFPAN-ngyN6kWawVTT4LVrx-sbsTjOzzcLs";
   var btn=document.getElementById("ft-submit"),err=document.getElementById("ft-error");
   function showErr(m){err.textContent=m;err.style.display="block";}
   btn.addEventListener("click",async function(){
@@ -681,6 +730,8 @@ footer{background:var(--ink);padding:52px 24px 36px}
       if(!res.ok)throw new Error("save failed "+res.status);
       document.getElementById("ft-form-step").style.display="none";
       document.getElementById("ft-pay-step").style.display="block";
+      // Also send to Google Sheet + email notification
+      fetch("https://script.google.com/macros/s/AKfycby4seDgOlI5Rr1m0LX2Q7uAOfyiUP8-CDt2SGhi54ylt4T_a4NT4uCEubqAVtM_FYyIwA/exec",{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:name,email:email,phone:phone,source:"session29jul"})}).catch(function(){});
     }catch(e){btn.disabled=false;btn.textContent="Register & continue →";showErr("Something went wrong. Please try again.");}
   });
 })();
@@ -738,7 +789,7 @@ footer{background:var(--ink);padding:52px 24px 36px}
         <div class="footer-mission">Teaching India what's actually possible with AI — through content, products, and hands-on deployment.</div>
         <div style="font-size:12px;color:rgba(255,255,255,.3);margin-top:12px">
           futuretalks.india@gmail.com &nbsp;·&nbsp; +91 90080 20176<br>
-          FutureTalks India Pvt Ltd (registration pending) · Bengaluru, India
+          FutureTalks India Private Limited · Bengaluru, India
         </div>
       </div>
       <div class="footer-links">

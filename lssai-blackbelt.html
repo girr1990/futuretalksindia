@@ -2,7 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23183d2c%22/><text x=%2250%22 y=%2268%22 font-size=%2248%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22%23e8962a%22 font-family=%22Georgia%22>FT</text></svg>">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="LSS-AI Black Belt Certification · Free for Founding 1,000">
+<meta property="og:description" content="India's first AI-native Lean Six Sigma Black Belt. 12 weeks, live cohort, free for founding members. Cohort 01 starts Aug 04.">
+<meta property="og:url" content="https://futuretalksindia.com/lssai-blackbelt.html">
+<meta property="og:type" content="website">
 <title>LSS-AI Black Belt Certification · FutureTalks India</title>
 <meta name="description" content="India's first AI-native Lean Six Sigma Black Belt certification. Free for the first 1,000 founding members. Built on the proprietary LSS-AI Framework by Rahul Choudhary.">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
@@ -1365,7 +1370,7 @@
 <script>
 (function(){
   var SUPABASE_URL="https://ilmedsvgatzyfmpgzksk.supabase.co";
-  var SUPABASE_KEY="sb_publishable_BLavB-vaOXjszlSz1t0ByA_vbWwhlYv";
+  var SUPABASE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlsbWVkc3ZnYXR6eWZtcGd6a3NrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI1ODM5NTQsImV4cCI6MjA5ODE1OTk1NH0.ky6P_FDNKFPAN-ngyN6kWawVTT4LVrx-sbsTjOzzcLs";
   var btn=document.getElementById("bb-submit"),err=document.getElementById("bb-error");
   if(!btn)return;
   function showErr(m){err.textContent=m;err.style.display="block";}
@@ -1387,6 +1392,8 @@
       if(!res.ok)throw new Error("save failed "+res.status);
       document.getElementById("bb-form-step").style.display="none";
       document.getElementById("bb-done-step").style.display="block";
+      // Also send to Google Sheet + email notification
+      fetch("https://script.google.com/macros/s/AKfycby4seDgOlI5Rr1m0LX2Q7uAOfyiUP8-CDt2SGhi54ylt4T_a4NT4uCEubqAVtM_FYyIwA/exec",{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:name,email:email,phone:phone,source:"blackbelt"})}).catch(function(){});
     }catch(e){btn.disabled=false;btn.textContent="Apply for founding access →";showErr("Something went wrong. Please try again.");}
   });
 })();
