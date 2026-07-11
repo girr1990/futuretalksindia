@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>FTI Admin, Leads</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter',sans-serif; background:#fdfaf5; color:#1a2333; min-height:100vh; }
+.wrap { max-width:760px; margin:0 auto; padding:60px 24px; }
+h1 { font-family:'Poppins',sans-serif; font-weight:800; font-size:26px; color:#0a1c3d; margin-bottom:6px; }
+.sub { color:#5c6478; font-size:14px; margin-bottom:36px; }
+.card { background:#fff; border:1px solid #e8e2d6; border-radius:14px; padding:32px; }
+.card p { color:#5c6478; font-size:14.5px; margin-bottom:20px; line-height:1.6; }
+input { width:100%; border:1px solid #d8d0c0; border-radius:8px; padding:12px 14px; font-size:15px; font-family:'Inter',sans-serif; margin-bottom:14px; letter-spacing:2px; text-align:center; }
+input:focus { outline:none; border-color:#ed5407; }
+button { width:100%; background:#ed5407; color:#fff; border:none; border-radius:8px; padding:13px; font-family:'Poppins',sans-serif; font-weight:700; font-size:14px; cursor:pointer; }
+button:hover { filter:brightness(0.95); }
+button:disabled { opacity:0.5; cursor:not-allowed; }
+.msg { font-size:13px; margin-top:14px; padding:10px 12px; border-radius:8px; }
+.msg.error { background:#fdeee8; color:#ed5407; }
+.msg.ok { background:#eef7ea; color:#1c4705; }
+.hidden { display:none; }
+.top-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+.logout { width:auto; background:#0a1c3d; padding:8px 16px; font-size:12px; }
+table { width:100%; border-collapse:collapse; font-size:13.5px; }
+th { text-align:left; padding:10px 12px; background:#0a1c3d; color:#fff; font-family:'Poppins',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:0.4px; }
+th:first-child { border-radius:8px 0 0 0; }
+th:last-child { border-radius:0 8px 0 0; }
+td { padding:12px; border-bottom:1px solid #e8e2d6; vertical-align:top; }
+tr:last-child td { border-bottom:none; }
+.empty { text-align:center; padding:40px; color:#8a90a0; }
+.badge { display:inline-block; background:#f7f1e6; color:#1c4705; padding:3px 10px; border-radius:100px; font-size:11px; font-weight:600; }
+</style>
+</head>
+<body>
+<div class="wrap">
+    <h1>FTI Admin</h1>
+    <div class="sub">Leads captured from the site. Login code goes to your Gmail.</div>
+
+    <div id="login-card" class="card">
+        <div id="step-request">
+            <p>Tap below and check the admin inbox for a 6-digit code. It expires in 10 minutes.</p>
+            <button id="btn-request">Send login code</button>
+        </div>
+        <div id="step-verify" class="hidden">
+            <p>Enter the code from your email.</p>
+            <input id="otp-input" type="text" inputmode="numeric" maxlength="6" placeholder="000000" />
+            <button id="btn-verify">Verify and log in</button>
+        </div>
+        <div id="login-msg"></div>
+    </div>
+
+    <div id="leads-card" class="hidden">
+        <div class="top-row">
+            <span class="badge" id="lead-count">0 leads</span>
+            <div style="display:flex; gap:8px;">
+                <button id="btn-refresh" class="logout" style="background:#1c4705;">Refresh</button>
+                <button id="btn-logout" class="logout">Log out</button>
+            </div>
+        </div>
+        <div class="card" style="padding:0; overflow-x:auto;">
+            <table>
+                <thead><tr><th>When</th><th>Name</th><th>Email</th><th>Phone</th><th>Interest</th><th>Message</th><th>Session</th><th>Paid</th></tr></thead>
+                <tbody id="leads-body"></tbody>
+            </table>
+            <div id="leads-empty" class="empty hidden">No leads yet. Once someone uses Get in touch on the site, they'll show up here.</div>
+        </div>
+    </div>
+</div>
+
+<script>
+(function(){
+  var challenge = null;
+  var SESSION_KEY = 'fti_admin_session';
+
+  var loginCard = document.getElementById('login-card');
+  var leadsCard = document.getElementById('leads-card');
+  var stepRequest = document.getElementById('step-request');
+  var stepVerify = document.getElementById('step-verify');
+  var loginMsg = document.getElementById('login-msg');
+  var btnRequest = document.getElementById('btn-request');
+  var btnVerify = document.getElementById('btn-verify');
+  var otpInput = document.getElementById('otp-input');
+  var btnLogout = document.getElementById('btn-logout');
+  var btnRefresh = document.getElementById('btn-refresh');
+
+  function showMsg(text, cls){
+    loginMsg.innerHTML = '<div class="msg ' + cls + '">' + text + '</div>';
+  }
+
+  btnRequest.addEventListener('click', async function(){
+    btnRequest.disabled = true;
+    btnRequest.textContent = 'Sending...';
+    try {
+      var res = await fetch('/.netlify/functions/request-otp', { method:'POST' });
+      var data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to send code');
+      challenge = data.challenge;
+      stepRequest.classList.add('hidden');
+      stepVerify.classList.remove('hidden');
+      showMsg('Code sent. Check your email.', 'ok');
+      otpInput.focus();
+    } catch(e) {
+      showMsg(e.message, 'error');
+      btnRequest.disabled = false;
+      btnRequest.textContent = 'Send login code';
+    }
+  });
+
+  btnVerify.addEventListener('click', async function(){
+    var otp = otpInput.value.trim();
+    if (otp.length !== 6) { showMsg('Enter the 6-digit code.', 'error'); return; }
+    btnVerify.disabled = true;
+    btnVerify.textContent = 'Checking...';
+    try {
+      var res = await fetch('/.netlify/functions/verify-otp', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ otp: otp, challenge: challenge })
+      });
+      var data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Verification failed');
+      localStorage.setItem(SESSION_KEY, data.session);
+      showLeads();
+    } catch(e) {
+      showMsg(e.message, 'error');
+      btnVerify.disabled = false;
+      btnVerify.textContent = 'Verify and log in';
+    }
+  });
+
+  btnLogout.addEventListener('click', function(){
+    localStorage.removeItem(SESSION_KEY);
+    location.reload();
+  });
+
+  btnRefresh.addEventListener('click', loadLeads);
+
+  async function loadLeads(){
+    var session = localStorage.getItem(SESSION_KEY);
+    if (!session) { showLogin(); return; }
+    try {
+      var res = await fetch('/.netlify/functions/list-leads', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ session: session })
+      });
+      var data = await res.json();
+      if (res.status === 401) { localStorage.removeItem(SESSION_KEY); showLogin(); return; }
+      if (!res.ok) throw new Error(data.error || 'Could not load leads');
+      renderLeads(data.leads || []);
+    } catch(e) {
+      document.getElementById('leads-body').innerHTML = '';
+      document.getElementById('leads-empty').textContent = e.message;
+      document.getElementById('leads-empty').classList.remove('hidden');
+    }
+  }
+
+  function renderLeads(leads){
+    var tbody = document.getElementById('leads-body');
+    var empty = document.getElementById('leads-empty');
+    document.getElementById('lead-count').textContent = leads.length + (leads.length === 1 ? ' lead' : ' leads');
+    if (leads.length === 0) {
+      tbody.innerHTML = '';
+      empty.classList.remove('hidden');
+      return;
+    }
+    empty.classList.add('hidden');
+    tbody.innerHTML = leads.map(function(l){
+      var when = l.created_at ? new Date(l.created_at).toLocaleString('en-IN', {day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}) : '';
+      return '<tr>' +
+        '<td>' + when + '</td>' +
+        '<td>' + (l.name || '') + '</td>' +
+        '<td>' + (l.email || '') + '</td>' +
+        '<td>' + (l.phone || '') + '</td>' +
+        '<td>' + (l.interest || '') + '</td>' +
+        '<td>' + (l.message || '') + '</td>' +
+        '<td>' + (l.session_date || '') + '</td>' +
+        '<td>' + (l.paid ? '✓' : '') + '</td>' +
+      '</tr>';
+    }).join('');
+  }
+
+  function showLogin(){
+    loginCard.classList.remove('hidden');
+    leadsCard.classList.add('hidden');
+    stepRequest.classList.remove('hidden');
+    stepVerify.classList.add('hidden');
+    btnRequest.disabled = false;
+    btnRequest.textContent = 'Send login code';
+  }
+
+  function showLeads(){
+    loginCard.classList.add('hidden');
+    leadsCard.classList.remove('hidden');
+    loadLeads();
+  }
+
+  // on load, check if a session already exists
+  if (localStorage.getItem(SESSION_KEY)) { showLeads(); } else { showLogin(); }
+})();
+</script>
+</body>
+</html>
