@@ -46,7 +46,7 @@ exports.handler = async (event) => {
     const result = await new Promise((resolve, reject) => {
       const req = https.request({
         hostname: host,
-        path: '/rest/v1/leads?select=*&order=created_at.desc',
+        path: '/rest/v1/ft_leads?select=*&order=created_at.desc',
         method: 'GET',
         headers: {
           'apikey': SUPABASE_SERVICE_KEY,
@@ -62,6 +62,16 @@ exports.handler = async (event) => {
     });
 
     const leads = JSON.parse(result.body);
+
+    if (result.status < 200 || result.status >= 300) {
+      // Supabase sent back an error, not data, surface exactly what it said instead of hiding it.
+      return { statusCode: 502, headers, body: JSON.stringify({ error: 'Supabase error: ' + (leads.message || result.body) }) };
+    }
+
+    if (!Array.isArray(leads)) {
+      return { statusCode: 502, headers, body: JSON.stringify({ error: 'Unexpected response from Supabase: ' + JSON.stringify(leads) }) };
+    }
+
     return { statusCode: 200, headers, body: JSON.stringify({ leads }) };
 
   } catch (error) {
