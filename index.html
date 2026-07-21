@@ -7,7 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
 <style>
 :root {
     --cream: #fdfaf5; --cream-2: #f7f1e6; --card: #ffffff;
@@ -31,27 +30,35 @@ nav { position: sticky; top: 0; z-index: 50; background: var(--navy); border-bot
 .brand-mark .word .w1 { color: #ffffff; }
 .brand-mark .word .w2 { color: var(--gold); }
 .brand-mark .word .w3 { color: #6fcf6f; }
-.nav-links { display: flex; gap: 24px; }
+.nav-links { display: flex; gap: 24px; align-items: center; }
 .nav-links a { font-family: var(--label); font-weight: 600; font-size: 12.5px; letter-spacing: 0.3px; text-transform: uppercase; color: #cdd4e3; text-decoration: none; transition: color 0.2s; }
 .nav-links a:hover, .nav-links a.active { color: var(--gold); }
-@media (max-width: 720px) { .nav-links { gap: 14px; } .nav-links a { font-size: 11px; } }
-.page-head { padding: 64px 0 46px; }
-.page-head .eyebrow { margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
-.page-head .eyebrow::before { content: ''; width: 32px; height: 3px; background: var(--orange); display: inline-block; border-radius: 2px; }
-.page-head h1 { font-family: var(--display); font-size: clamp(30px, 5.2vw, 52px); font-weight: 700; line-height: 1.12; letter-spacing: -0.8px; margin-bottom: 18px; color: var(--navy); }
-.page-head h1 .accent { color: var(--orange); }
-.page-head .lead { font-size: 17px; color: var(--text-dim); max-width: 640px; }
-.hero { padding: 56px 0 70px; }
-.hero-banner { width: 100%; border-radius: 16px; overflow: hidden; margin-bottom: 44px; box-shadow: 0 20px 50px rgba(10,28,61,0.18); border: 1px solid var(--line); }
-.hero-banner img { width: 100%; display: block; }
-.hero .eyebrow { margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+.nav-join { padding: 7px 16px; border-radius: 6px; background: var(--orange); color: white !important; font-weight: 700 !important; transition: background .2s !important; }
+.nav-join:hover { background: #d44a06 !important; color: white !important; }
+@media (max-width: 720px) { .nav-links { gap: 14px; } .nav-links a { font-size: 11px; } .nav-join { display: none; } }
+.hero { padding: 56px 0 48px; }
+/* TWO-COLUMN HERO */
+.hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+@media(max-width:860px) { .hero-grid { grid-template-columns: 1fr; gap: 36px; } }
+/* VIDEO LEFT */
+.hero-video-col {}
+.hero-video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 14px; box-shadow: 0 20px 50px rgba(10,28,61,0.18); border: 1px solid var(--line); background: var(--navy-soft); }
+.hero-video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 14px; }
+/* TICKER below video */
+.live-ticker { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 8px; background: var(--navy-soft); border: 1px solid var(--line); margin-top: 14px; font-size: 12px; color: var(--text-dim); }
+.tdot { width: 7px; height: 7px; border-radius: 50%; background: var(--orange); flex-shrink: 0; animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1}50%{opacity:.3} }
+#ticker-text { transition: opacity .3s; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+#ticker-text strong { color: var(--navy); }
+/* TEXT RIGHT */
+.hero-text-col {}
+.hero .eyebrow { margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
 .hero .eyebrow::before { content: ''; width: 32px; height: 3px; background: var(--orange); display: inline-block; border-radius: 2px; }
-.hero h1 { font-family: var(--display); font-size: clamp(34px, 6vw, 62px); font-weight: 700; line-height: 1.08; letter-spacing: -1px; margin-bottom: 24px; color: var(--navy); }
+.hero h1 { font-family: var(--display); font-size: clamp(28px, 3.8vw, 50px); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px; color: var(--navy); }
 .hero h1 .accent { color: var(--orange); }
-.hero h1 .accent2 { color: var(--green); }
-.hero .lead { font-size: 18px; color: var(--text-dim); max-width: 640px; margin-bottom: 14px; }
+.hero .lead { font-size: 16px; color: var(--text-dim); margin-bottom: 12px; line-height: 1.65; }
 .hero .lead b { color: var(--navy); font-weight: 700; }
-.hero .founder { font-family: var(--label); font-weight: 600; font-size: 12.5px; letter-spacing: 0.3px; color: var(--text-faint); margin-bottom: 36px; text-transform: uppercase; }
+.hero .founder { font-family: var(--label); font-weight: 600; font-size: 11.5px; letter-spacing: 0.3px; color: var(--text-faint); margin-bottom: 28px; text-transform: uppercase; }
 .hero .founder b { color: var(--orange); font-weight: 700; }
 .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
 .btn { font-family: var(--label); font-weight: 600; font-size: 13px; letter-spacing: 0.3px; text-transform: uppercase; padding: 15px 26px; border-radius: 8px; text-decoration: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer; }
@@ -59,8 +66,22 @@ nav { position: sticky; top: 0; z-index: 50; background: var(--navy); border-bot
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(237,84,7,0.3); }
 .btn-ghost { border: 2px solid var(--navy); color: var(--navy); background: transparent; }
 .btn-ghost:hover { background: var(--navy); color: #fff; }
-.btn-green { background: var(--green); color: #fff; }
-.btn-green:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(28,71,5,0.25); }
+.btn-wa { background: #25D366; color: #fff; border: none; }
+.btn-wa:hover { background: #22c55e; transform: translateY(-2px); }
+/* SUBSCRIBE */
+.sub-band { background: linear-gradient(135deg,rgba(10,28,61,0.04),rgba(237,84,7,0.04)); border: 1px solid var(--line); border-radius: 16px; padding: 48px 40px; text-align: center; margin: 0 0 48px; }
+.sub-band .mono { display: block; margin-bottom: 12px; }
+.sub-band h2 { font-family: var(--display); font-size: clamp(22px,3vw,32px); font-weight: 700; letter-spacing: -.5px; color: var(--navy); margin-bottom: 10px; }
+.sub-band p { color: var(--text-dim); font-size: 15px; margin-bottom: 28px; max-width: 480px; margin-left: auto; margin-right: auto; }
+.sub-form { max-width: 460px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+.sub-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.sub-input { border: 1px solid var(--line-2); border-radius: 8px; padding: 12px 14px; font-size: 14px; font-family: var(--body); outline: none; background: #fff; width: 100%; transition: border-color .15s; }
+.sub-input:focus { border-color: var(--orange); }
+.sub-input::placeholder { color: var(--text-faint); }
+.sub-note { font-size: 11px; color: var(--text-faint); }
+.sub-success { display: none; padding: 14px; background: var(--green-soft); border: 1px solid rgba(28,71,5,.2); border-radius: 8px; color: var(--green); font-weight: 600; margin-top: 10px; }
+.sub-success.show { display: block; }
+@media(max-width:560px) { .sub-row { grid-template-columns: 1fr; } .sub-band { padding: 32px 20px; } }
 section { padding: 64px 0; position: relative; }
 .sec-head { margin-bottom: 40px; }
 .sec-head .mono { display: block; margin-bottom: 12px; }
@@ -79,9 +100,6 @@ section { padding: 64px 0; position: relative; }
 .ip-card h3 { font-family: var(--display); font-size: 20px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.2px; color: var(--navy); }
 .ip-card p { color: var(--text-dim); font-size: 14.5px; }
 .fw-block { border: 1px solid var(--line); border-radius: 16px; padding: 34px; margin-bottom: 18px; background: var(--card); }
-.fw-block .idx { font-family: var(--label); font-weight: 700; font-size: 12px; color: var(--orange); margin-bottom: 14px; letter-spacing: 0.3px; }
-.fw-block h3 { font-family: var(--display); font-size: 24px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.3px; color: var(--navy); }
-.fw-block .desc { color: var(--text-dim); font-size: 15.5px; margin-bottom: 20px; max-width: 700px; }
 .fw-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 @media (max-width: 780px) { .fw-cols { grid-template-columns: 1fr; } }
 .fw-col { background: var(--cream-2); border-radius: 10px; padding: 14px 16px; }
@@ -95,11 +113,6 @@ section { padding: 64px 0; position: relative; }
 .build-card .tag.live { color: var(--green); background: var(--green-soft); }
 .build-card h3 { font-family: var(--display); font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--navy); }
 .build-card p { color: var(--text-dim); font-size: 14.5px; margin-bottom: 14px; }
-.build-card a.link { font-family: var(--label); font-weight: 600; font-size: 12px; color: var(--orange); text-decoration: none; letter-spacing: 0.2px; }
-.build-card a.link:hover { text-decoration: underline; }
-.build-note { margin-top: 28px; padding: 24px 28px; border-left: 4px solid var(--orange); background: var(--cream-2); border-radius: 0 12px 12px 0; }
-.build-note p { font-size: 15.5px; color: var(--text); }
-.build-note p b { color: var(--orange); }
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
 @media (max-width: 720px) { .about-grid { grid-template-columns: 1fr; gap: 32px; } }
 .about-text p { color: var(--text-dim); font-size: 16.5px; margin-bottom: 16px; }
@@ -108,20 +121,6 @@ section { padding: 64px 0; position: relative; }
 .fact { background: var(--card); padding: 18px 22px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
 .fact .k { font-family: var(--label); font-weight: 700; font-size: 10.5px; letter-spacing: 0.4px; text-transform: uppercase; color: var(--text-faint); }
 .fact .v { font-family: var(--display); font-weight: 700; font-size: 15px; text-align: right; color: var(--navy); }
-.post-entry { border: 1px solid var(--line); border-radius: 14px; padding: 28px; margin-bottom: 16px; background: var(--card); }
-.post-entry .meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 10px; }
-.post-entry .theme-tag { font-family: var(--label); font-weight: 700; font-size: 10.5px; letter-spacing: 0.4px; text-transform: uppercase; color: var(--orange); padding: 4px 12px; background: var(--orange-soft); border-radius: 100px; }
-.post-entry .date { font-family: var(--label); font-weight: 600; font-size: 11px; color: var(--text-faint); }
-.post-entry h3 { font-family: var(--display); font-size: 21px; font-weight: 700; margin-bottom: 10px; color: var(--navy); }
-.post-entry p { color: var(--text-dim); font-size: 15px; margin-bottom: 8px; }
-.post-entry .status { font-family: var(--label); font-weight: 600; font-size: 11px; color: var(--text-faint); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
-.post-entry .status.published { color: var(--green); }
-.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-@media (max-width: 680px) { .contact-grid { grid-template-columns: 1fr; } }
-.contact-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 30px; text-align: center; }
-.contact-card .icon { font-size: 26px; margin-bottom: 14px; }
-.contact-card h3 { font-family: var(--display); font-size: 17px; font-weight: 700; margin-bottom: 8px; color: var(--navy); }
-.contact-card p { color: var(--text-dim); font-size: 13.5px; margin-bottom: 16px; }
 .connect { text-align: center; background: var(--navy); padding: 80px 0; margin-top: 40px; }
 .connect h2 { font-family: var(--display); font-size: clamp(26px, 4.6vw, 44px); font-weight: 700; letter-spacing: -0.7px; margin-bottom: 18px; line-height: 1.15; color: #ffffff; }
 .connect h2 .accent { color: var(--gold); }
@@ -133,8 +132,7 @@ footer { background: var(--navy); padding: 26px 0; }
 .foot-inner a { color: #cdd4e3; text-decoration: none; font-family: var(--label); font-weight: 600; font-size: 12px; letter-spacing: 0.3px; }
 .foot-inner a:hover { color: var(--gold); }
 :focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
-@media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } }
-
+/* NOVA */
 #rc-widget { position: fixed; bottom: calc(22px + env(safe-area-inset-bottom)); right: calc(22px + env(safe-area-inset-right)); z-index: 200; font-family: var(--body); }
 #rc-toggle { width: 58px; height: 58px; border-radius: 50%; background: var(--orange); border: none; box-shadow: 0 10px 28px rgba(237,84,7,0.35); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.2s; }
 #rc-toggle:hover { transform: scale(1.06); }
@@ -162,170 +160,291 @@ footer { background: var(--navy); padding: 26px 0; }
 #rc-contact-view input, #rc-contact-view select, #rc-contact-view textarea { border: 1px solid var(--line-2); border-radius: 8px; padding: 10px 12px; font-size: 13.5px; font-family: var(--body); width: 100%; }
 #rc-contact-view input:focus, #rc-contact-view select:focus, #rc-contact-view textarea:focus { outline: none; border-color: var(--orange); }
 #rc-whatsapp-btn { background: #25D366; color: #fff; border: none; border-radius: 8px; padding: 12px; font-family: var(--label); font-weight: 700; font-size: 13px; cursor: pointer; margin-top: 4px; }
-#rc-whatsapp-btn:hover { filter: brightness(0.95); }
 @media (max-width: 480px) { #rc-panel { right: 12px; left: 12px; width: auto; bottom: 84px; } #rc-widget { right: 16px; bottom: 16px; } }
 </style>
 </head>
 <body>
+
 <nav>
-    <div class="nav-inner">
-        <a href="index.html" class="brand-mark">
-        <svg class="mark-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-<circle cx="32" cy="32" r="32" fill="#0a1c3d"/>
-<circle cx="46" cy="16" r="3.2" fill="#f7e017"/>
-<path d="M46 16 L48 8" stroke="#f7e017" stroke-width="2" stroke-linecap="round"/>
-<circle cx="24" cy="26" r="6" fill="#f77e15"/>
-<path d="M6 46 L22 26 L32 38 L42 24 L58 46 Z" fill="#1c4705"/>
-<path d="M6 46 L58 46 L58 50 L6 50 Z" fill="#0a1c3d"/>
-</svg>
-        <span class="word"><span class="w1">Future</span><span class="w2">Talks</span> <span class="w3">India</span></span>
-        </a>
-        <div class="nav-links">
-        <a href="index.html" class="active">Home</a>
-<a href="frameworks.html">Frameworks</a>
-<a href="work.html">Work</a>
-<a href="insights.html">Insights</a>
-<a href="contact.html">Connect</a>
-        </div>
+  <div class="nav-inner">
+    <a href="index.html" class="brand-mark">
+      <svg class="mark-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="32" cy="32" r="32" fill="#0a1c3d"/>
+        <circle cx="46" cy="16" r="3.2" fill="#f7e017"/>
+        <path d="M46 16 L48 8" stroke="#f7e017" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="24" cy="26" r="6" fill="#f77e15"/>
+        <path d="M6 46 L22 26 L32 38 L42 24 L58 46 Z" fill="#1c4705"/>
+        <path d="M6 46 L58 46 L58 50 L6 50 Z" fill="#0a1c3d"/>
+      </svg>
+      <span class="word"><span class="w1">Future</span><span class="w2">Talks</span> <span class="w3">India</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="frameworks.html">Frameworks</a>
+      <a href="work.html">Work</a>
+      <a href="insights.html">Insights</a>
+      <a href="contact.html">Connect</a>
+      <a href="#subscribe" class="nav-join">Join Free</a>
     </div>
+  </div>
 </nav>
 
 <div class="wrap">
-    <header class="hero">
-        <div class="hero-banner"><img src="brand-hero.jpg" alt="FutureTalks India, Applied AI for a Better Tomorrow" loading="eager"></div>
+  <header class="hero">
+    <div class="hero-grid">
+
+      <!-- LEFT: VIDEO + TICKER -->
+      <div class="hero-video-col">
+        <div class="hero-video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/RBSzPZ_7jM8?autoplay=1&mute=1&loop=1&playlist=RBSzPZ_7jM8&controls=1&rel=0&modestbranding=1"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            title="FutureTalks India Introduction">
+          </iframe>
+        </div>
+        <div class="live-ticker">
+          <div class="tdot"></div>
+          <div id="ticker-text"><strong>New episode dropping soon</strong> — Interstellar Travel, Alien Life &amp; Life After Death</div>
+        </div>
+      </div>
+
+      <!-- RIGHT: TEXT + CTA -->
+      <div class="hero-text-col">
         <div class="eyebrow"><span class="mono">Applied AI Education &middot; Products &middot; Research</span></div>
         <h1>Most enterprise AI fails.<br>Not the model.<br><span class="accent">The method.</span></h1>
-        <p class="lead">FutureTalks India teaches practical AI skills and builds tools that put AI into real use. Grounded in <b>Lean Six Sigma discipline</b> and 14+ years inside enterprise transformation, we turn the same thinking into education, products, and a growing community.</p>
+        <p class="lead">FutureTalks India teaches practical AI skills and builds tools that put AI into real use. Grounded in <b>Lean Six Sigma discipline</b> and 14+ years inside enterprise transformation.</p>
         <div class="cta-row">
-            <a class="btn btn-primary" href="https://www.linkedin.com/in/future-talks-india-applied-ai-347301421" target="_blank" rel="noopener">Connect on LinkedIn &rarr;</a>
-            <a class="btn btn-ghost" href="frameworks.html">See the frameworks</a>
+          <a class="btn btn-primary" href="#subscribe">Join Free &rarr;</a>
+          <a class="btn btn-ghost" href="frameworks.html">See frameworks</a>
         </div>
-    </header>
+        <div style="margin-top:14px">
+          <a class="btn btn-wa" href="https://wa.me/919008020176" target="_blank" rel="noopener" style="display:inline-flex">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.943l6.266-1.443A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.373l-.36-.213-3.72.857.895-3.608-.234-.371A9.818 9.818 0 1112 21.818z"/></svg>
+            Chat on WhatsApp — +91 90080 20176
+          </a>
+        </div>
+      </div>
 
-    <section class="thesis">
-        <div class="big">Everyone has an AI pilot. Few have AI in production. The gap isn't talent or budget. It's <span class="hl">method</span>: a repeatable way to find the use cases that matter, measure what they return, and scale what works.</div>
-        <div class="sub">// That method has a name: the LSS-AI Framework&trade;</div>
-    </section>
+    </div>
+  </header>
 
-    <section>
-        <div class="sec-head">
-            <span class="mono">Proprietary IP</span>
-            <h2>Four instruments for getting AI right</h2>
-            <p>Not theory. Operating tools, built from 14+ years inside real transformation programs.</p>
-        </div>
-        <div class="ip-grid">
-            <div class="ip-card"><div class="idx"><span>01</span><span class="tm">&trade;</span></div><h3>LSS-AI Framework</h3><p>DMAIC meets agentic automation. Takes AI from idea to scaled, measured outcome.</p></div>
-            <div class="ip-card"><div class="idx"><span>02</span><span class="tm">&trade;</span></div><h3>Agentic Maturity Model</h3><p>Know exactly where your org sits on the path to agentic AI, and what's next.</p></div>
-            <div class="ip-card"><div class="idx"><span>03</span><span class="tm">&trade;</span></div><h3>AI Value Scorecard</h3><p>Stop guessing at ROI. Measure what AI returns, in the language finance trusts.</p></div>
-            <div class="ip-card"><div class="idx"><span>04</span><span class="tm">&trade;</span></div><h3>Use Case Heatmap</h3><p>Find the use cases worth funding before a rupee is spent.</p></div>
-        </div>
-        <div style="margin-top:28px;"><a class="btn btn-ghost" href="frameworks.html">Explore all frameworks &rarr;</a></div>
-    </section>
+  <!-- SUBSCRIBE BAND -->
+  <div class="sub-band" id="subscribe">
+    <span class="mono">Stay in the Loop</span>
+    <h2>Get AI insights straight to you</h2>
+    <p>Weekly practical AI tips for Indian professionals — written by a practitioner, not a pundit. No spam. Ever.</p>
+    <form class="sub-form" id="sub-form" onsubmit="handleSubscribe(event)">
+      <div class="sub-row">
+        <input class="sub-input" id="sub-name" type="text" placeholder="Your name" required autocomplete="name"/>
+        <input class="sub-input" id="sub-wa" type="tel" placeholder="WhatsApp number" autocomplete="tel"/>
+      </div>
+      <input class="sub-input" id="sub-email" type="email" placeholder="Email address" required autocomplete="email"/>
+      <button type="submit" id="sub-btn" class="btn btn-primary" style="width:100%;justify-content:center">Join Free — No Spam Ever</button>
+      <p class="sub-note">Your data stays with FutureTalks India only. Unsubscribe anytime.</p>
+    </form>
+    <div class="sub-success" id="sub-success">🎉 You are in! Check WhatsApp or email for a welcome message from Rahul.</div>
+  </div>
 
-    <section>
-        <div class="sec-head">
-            <span class="mono">Upcoming Session</span>
-            <h2>LSS-AI Black Belt, Cohort 01</h2>
-            <p>A 12-week, mentor-led cohort built around the four frameworks above. Pay what you wish, it keeps the platform running.</p>
-        </div>
-        <div class="fw-block" style="margin-bottom:0;">
-            <div class="fw-cols" style="margin-bottom:20px;">
-                <div class="fw-col"><div class="k">Starts</div><div class="v">August 4, 2026</div></div>
-                <div class="fw-col"><div class="k">Format</div><div class="v">12 weeks, live sessions with Rahul</div></div>
-                <div class="fw-col"><div class="k">Price</div><div class="v">Pay what you wish, no fixed fee</div></div>
-            </div>
-            <div class="cta-row">
-                <a class="btn btn-primary" href="lssai-blackbelt.html">See full details &amp; register &rarr;</a>
-            </div>
-        </div>
-    </section>
+  <section class="thesis">
+    <div class="big">Everyone has an AI pilot. Few have AI in production. The gap isn't talent or budget. It's <span class="hl">method</span>: a repeatable way to find the use cases that matter, measure what they return, and scale what works.</div>
+    <div class="sub">// That method has a name: the LSS-AI Framework&trade;</div>
+  </section>
 
-    <section>
-        <div class="sec-head">
-            <span class="mono">What We Build</span>
-            <h2>We don't just talk AI. We build it.</h2>
-            <p>Working products and tools, built by directing AI with deep domain expertise.</p>
-        </div>
-        <div class="build-grid">
-            <div class="build-card"><span class="tag live">Live Product</span><h3>Buddy</h3><p>Fairness-based group expense splitting, built and tested on a real 15-person trip.</p></div>
-            <div class="build-card"><span class="tag">Content System</span><h3>Daily Post Engine</h3><p>Turns thinking into reel-ready cards with captions and posting strategy built in.</p></div>
-        </div>
-        <div style="margin-top:28px;"><a class="btn btn-ghost" href="work.html">See everything we've built &rarr;</a></div>
-    </section>
+  <section>
+    <div class="sec-head">
+      <span class="mono">Proprietary IP</span>
+      <h2>Four instruments for getting AI right</h2>
+      <p>Not theory. Operating tools, built from 14+ years inside real transformation programs.</p>
+    </div>
+    <div class="ip-grid">
+      <div class="ip-card"><div class="idx"><span>01</span><span class="tm">&trade;</span></div><h3>LSS-AI Framework</h3><p>DMAIC meets agentic automation. Takes AI from idea to scaled, measured outcome.</p></div>
+      <div class="ip-card"><div class="idx"><span>02</span><span class="tm">&trade;</span></div><h3>Agentic Maturity Model</h3><p>Know exactly where your org sits on the path to agentic AI, and what's next.</p></div>
+      <div class="ip-card"><div class="idx"><span>03</span><span class="tm">&trade;</span></div><h3>AI Value Scorecard</h3><p>Stop guessing at ROI. Measure what AI returns, in the language finance trusts.</p></div>
+      <div class="ip-card"><div class="idx"><span>04</span><span class="tm">&trade;</span></div><h3>Use Case Heatmap</h3><p>Find the use cases worth funding before a rupee is spent.</p></div>
+    </div>
+    <div style="margin-top:28px;"><a class="btn btn-ghost" href="frameworks.html">Explore all frameworks &rarr;</a></div>
+  </section>
 
-    <section id="about">
-        <div class="sec-head">
-            <span class="mono">About</span>
-            <h2>14 years turning operations into advantage</h2>
-        </div>
-        <div class="about-grid">
-            <div class="about-text">
-                <p>FutureTalks India is an applied AI education company built on a simple belief: <b>process discipline is what separates AI that ships from AI that demos.</b></p>
-                <p>Founded by <b>Rahul Choudhary</b>, who has spent 14+ years inside large-scale finance and operations transformation across <b>TCS, Genpact, and Accenture</b>.</p>
-            </div>
-            <div class="facts">
-                <div class="fact"><span class="k">Founded</span><span class="v">2026, Bengaluru</span></div>
-                <div class="fact"><span class="k">Founder</span><span class="v">Rahul Choudhary</span></div>
-                <div class="fact"><span class="k">Certification</span><span class="v">LSS Black Belt</span></div>
-                <div class="fact"><span class="k">Focus</span><span class="v">Education, Products, Research</span></div>
-            </div>
-        </div>
-    </section>
+  <section>
+    <div class="sec-head">
+      <span class="mono">Upcoming Session</span>
+      <h2>LSS-AI Black Belt, Cohort 01</h2>
+      <p>A 12-week, mentor-led cohort built around the four frameworks above. Pay what you wish, it keeps the platform running.</p>
+    </div>
+    <div class="fw-block" style="margin-bottom:0;">
+      <div class="fw-cols" style="margin-bottom:20px;">
+        <div class="fw-col"><div class="k">Starts</div><div class="v">August 4, 2026</div></div>
+        <div class="fw-col"><div class="k">Format</div><div class="v">12 weeks, live sessions with Rahul</div></div>
+        <div class="fw-col"><div class="k">Price</div><div class="v">Pay what you wish, no fixed fee</div></div>
+      </div>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="lssai-blackbelt.html">See full details &amp; register &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="mono">What We Build</span>
+      <h2>We don't just talk AI. We build it.</h2>
+      <p>Working products and tools, built by directing AI with deep domain expertise.</p>
+    </div>
+    <div class="build-grid">
+      <div class="build-card"><span class="tag live">Live Product</span><h3>Buddy</h3><p>Fairness-based group expense splitting, built and tested on a real 15-person trip.</p></div>
+      <div class="build-card"><span class="tag">Content System</span><h3>Daily Post Engine</h3><p>Turns thinking into reel-ready cards with captions and posting strategy built in.</p></div>
+    </div>
+    <div style="margin-top:28px;"><a class="btn btn-ghost" href="work.html">See everything we've built &rarr;</a></div>
+  </section>
+
+  <section id="about">
+    <div class="sec-head">
+      <span class="mono">About</span>
+      <h2>14 years turning operations into advantage</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>FutureTalks India is an applied AI education company built on a simple belief: <b>process discipline is what separates AI that ships from AI that demos.</b></p>
+        <p>Founded by <b>Rahul Choudhary</b>, who has spent 14+ years inside large-scale finance and operations transformation across <b>TCS, Genpact, and Accenture</b>.</p>
+      </div>
+      <div class="facts">
+        <div class="fact"><span class="k">Founded</span><span class="v">2026, Bengaluru</span></div>
+        <div class="fact"><span class="k">Founder</span><span class="v">Rahul Choudhary</span></div>
+        <div class="fact"><span class="k">Certification</span><span class="v">LSS Black Belt</span></div>
+        <div class="fact"><span class="k">Focus</span><span class="v">Education, Products, Research</span></div>
+      </div>
+    </div>
+  </section>
 </div>
 
 <section class="connect">
-    <div class="wrap">
-        <h2>Building the future of work?<br><span class="accent">Let's compare notes.</span></h2>
-        <p>We write about enterprise AI, reinvention, and the method behind making it all work. Follow along if that's your fight too.</p>
-        <div class="cta-row">
-            <a class="btn btn-primary" href="https://www.linkedin.com/in/future-talks-india-applied-ai-347301421" target="_blank" rel="noopener">Follow on LinkedIn &rarr;</a>
-            <a class="btn btn-ghost" href="contact.html">Get in touch</a>
-        </div>
+  <div class="wrap">
+    <h2>Building the future of work?<br><span class="accent">Let's compare notes.</span></h2>
+    <p>We write about enterprise AI, reinvention, and the method behind making it all work. Follow along if that's your fight too.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://www.linkedin.com/in/future-talks-india-applied-ai-347301421" target="_blank" rel="noopener">Follow on LinkedIn &rarr;</a>
+      <a class="btn btn-ghost" href="contact.html" style="color:white;border-color:rgba(255,255,255,0.4)">Get in touch</a>
     </div>
+  </div>
 </section>
 
 <footer>
-    <div class="wrap foot-inner">
-        <span class="mono">&copy; FuturetalksIndia Private Limited. All rights reserved.</span>
-        <a href="https://www.linkedin.com/in/future-talks-india-applied-ai-347301421" target="_blank" rel="noopener">LinkedIn &#8599;</a>
-    </div>
+  <div class="wrap foot-inner">
+    <span class="mono">&copy; FuturetalksIndia Private Limited. All rights reserved.</span>
+    <a href="https://www.linkedin.com/in/future-talks-india-applied-ai-347301421" target="_blank" rel="noopener">LinkedIn &#8599;</a>
+  </div>
 </footer>
+
+<!-- NOVA WIDGET (original, unchanged) -->
 <div id="rc-widget">
-    <button id="rc-toggle" aria-label="Chat with Nova">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4h16v12H8l-4 4V4z" fill="white"/></svg>
-    </button>
-    <div id="rc-panel">
-        <div id="rc-header">
-            <div><div id="rc-title">Nova</div><div id="rc-sub">FutureTalks India assistant</div></div>
-            <button id="rc-close" aria-label="Close chat">&times;</button>
-        </div>
-        <div id="rc-tabs">
-            <button class="rc-tab active" data-tab="chat">Chat</button>
-            <button class="rc-tab" data-tab="contact">Get in touch</button>
-        </div>
-        <div id="rc-chat-view">
-            <div id="rc-messages"><div class="rc-msg rc-bot">Hi, I'm Nova. Ask me anything about FutureTalks India, Buddy, or our frameworks.</div></div>
-            <div id="rc-input-row">
-                <input id="rc-input" type="text" placeholder="Type a question..." />
-                <button id="rc-send" aria-label="Send">&rarr;</button>
-            </div>
-        </div>
-        <div id="rc-contact-view">
-            <p class="rc-contact-lead">Share a few details and we'll open WhatsApp with everything filled in, one tap to send.</p>
-            <input id="rc-name" type="text" placeholder="Your name" />
-            <input id="rc-phone" type="text" placeholder="Phone or email" />
-            <select id="rc-interest">
-                <option value="">What are you interested in?</option>
-                <option value="Buddy app">Buddy app</option>
-                <option value="Frameworks and training">Frameworks and training</option>
-                <option value="General question">General question</option>
-            </select>
-            <textarea id="rc-message" placeholder="Anything else we should know?" rows="3"></textarea>
-            <button id="rc-whatsapp-btn">Send via WhatsApp</button>
-        </div>
+  <button id="rc-toggle" aria-label="Chat with Nova">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v12H8l-4 4V4z" fill="white"/></svg>
+  </button>
+  <div id="rc-panel">
+    <div id="rc-header">
+      <div><div id="rc-title">Nova</div><div id="rc-sub">FutureTalks India assistant</div></div>
+      <button id="rc-close" aria-label="Close chat">&times;</button>
     </div>
+    <div id="rc-tabs">
+      <button class="rc-tab active" data-tab="chat">Chat</button>
+      <button class="rc-tab" data-tab="contact">Get in touch</button>
+    </div>
+    <div id="rc-chat-view">
+      <div id="rc-messages"><div class="rc-msg rc-bot">Hi, I'm Nova. Ask me anything about FutureTalks India, Buddy, or our frameworks.</div></div>
+      <div id="rc-input-row">
+        <input id="rc-input" type="text" placeholder="Type a question..." />
+        <button id="rc-send" aria-label="Send">&rarr;</button>
+      </div>
+    </div>
+    <div id="rc-contact-view">
+      <p class="rc-contact-lead">Share a few details and we'll open WhatsApp with everything filled in, one tap to send.</p>
+      <input id="rc-name-c" type="text" placeholder="Your name" />
+      <input id="rc-phone" type="text" placeholder="Phone or email" />
+      <select id="rc-interest">
+        <option value="">What are you interested in?</option>
+        <option value="Buddy app">Buddy app</option>
+        <option value="Frameworks and training">Frameworks and training</option>
+        <option value="General question">General question</option>
+      </select>
+      <textarea id="rc-message" placeholder="Anything else we should know?" rows="3"></textarea>
+      <button id="rc-whatsapp-btn">Send via WhatsApp</button>
+    </div>
+  </div>
 </div>
+
 <script>
+// TICKER
+var TICKS = [
+  '<strong>New episode dropping soon</strong> \u2014 Interstellar Travel, Alien Life & Life After Death',
+  '<strong>AI for Bharat series</strong> launching August 2026',
+  '<strong>LSS-AI Black Belt Cohort 01</strong> \u2014 starts August 4, register now',
+  '<strong>Buddy is live</strong> \u2014 smart expense splitting for group trips',
+  '<strong>Weekly AI tips</strong> \u2014 subscribe above to get them on WhatsApp'
+];
+var ti = 0;
+setInterval(function() {
+  ti = (ti + 1) % TICKS.length;
+  var el = document.getElementById('ticker-text');
+  el.style.opacity = '0';
+  setTimeout(function() { el.innerHTML = TICKS[ti]; el.style.opacity = '1'; }, 300);
+}, 5000);
+
+// VISITOR TRACKING — uses existing Netlify submit-lead function so no Supabase key needed here
+(function() {
+  try {
+    var vid = localStorage.getItem('fti_vid');
+    if (!vid) {
+      vid = 'v_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
+      localStorage.setItem('fti_vid', vid);
+    }
+    var params = new URLSearchParams(window.location.search);
+    var src = params.get('utm_source') || document.referrer || 'direct';
+    // Store UTM for use in subscribe form
+    if (params.get('utm_source')) {
+      localStorage.setItem('fti_utm', JSON.stringify({
+        source: params.get('utm_source'),
+        medium: params.get('utm_medium'),
+        campaign: params.get('utm_campaign')
+      }));
+    }
+  } catch(e) {}
+})();
+
+// SUBSCRIBE FORM — pipes through existing submit-lead Netlify function
+function handleSubscribe(e) {
+  e.preventDefault();
+  var name = document.getElementById('sub-name').value.trim();
+  var email = document.getElementById('sub-email').value.trim();
+  var wa = document.getElementById('sub-wa').value.trim();
+  var btn = document.getElementById('sub-btn');
+  btn.textContent = 'Joining...'; btn.disabled = true;
+  try {
+    var utm = JSON.parse(localStorage.getItem('fti_utm') || '{}');
+    localStorage.setItem('fti_profile', JSON.stringify({ name: name, email: email, wa: wa }));
+    // Call the existing submit-lead function — same one Nova uses, no new infra needed
+    fetch('/.netlify/functions/submit-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        whatsapp: wa,
+        contact: wa || email,
+        source: 'website_subscribe_' + (utm.source || 'direct'),
+        interest: 'Newsletter',
+        message: 'Subscribed from hero section'
+      })
+    }).then(function() { showSuccess(name); }).catch(function() { showSuccess(name); });
+  } catch(e) { showSuccess(name); }
+}
+function showSuccess(name) {
+  document.getElementById('sub-success').classList.add('show');
+  document.getElementById('sub-form').style.display = 'none';
+  var msg = encodeURIComponent('Hi Rahul! I just subscribed on futuretalksindia.com. I am ' + name + ' and I want to learn AI practically. Looking forward to the content!');
+  setTimeout(function() { window.open('https://wa.me/919008020176?text=' + msg, '_blank'); }, 1500);
+}
+
+// NOVA WIDGET (original code)
 (function(){
   var history = [];
   var toggle = document.getElementById('rc-toggle');
@@ -338,10 +457,8 @@ footer { background: var(--navy); padding: 26px 0; }
   var input = document.getElementById('rc-input');
   var sendBtn = document.getElementById('rc-send');
   var waBtn = document.getElementById('rc-whatsapp-btn');
-
   toggle.addEventListener('click', function(){ panel.classList.toggle('open'); });
   closeBtn.addEventListener('click', function(){ panel.classList.remove('open'); });
-
   tabs.forEach(function(tab){
     tab.addEventListener('click', function(){
       tabs.forEach(function(t){ t.classList.remove('active'); });
@@ -350,45 +467,26 @@ footer { background: var(--navy); padding: 26px 0; }
       else { chatView.style.display = 'none'; contactView.style.display = 'flex'; }
     });
   });
-
   function addMsg(text, cls){
     var d = document.createElement('div');
-    d.className = 'rc-msg ' + cls;
-    d.textContent = text;
-    messages.appendChild(d);
-    messages.scrollTop = messages.scrollHeight;
-    return d;
+    d.className = 'rc-msg ' + cls; d.textContent = text;
+    messages.appendChild(d); messages.scrollTop = messages.scrollHeight; return d;
   }
-
   async function sendMessage(){
-    var text = input.value.trim();
-    if (!text) return;
-    addMsg(text, 'rc-user');
-    history.push({role:'user', content:text});
-    input.value = '';
+    var text = input.value.trim(); if (!text) return;
+    addMsg(text, 'rc-user'); history.push({role:'user', content:text}); input.value = '';
     var loading = addMsg('Thinking...', 'rc-bot rc-loading');
     try {
-      var res = await fetch('/.netlify/functions/nova', {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({messages: history})
-      });
-      var data = await res.json();
-      loading.remove();
+      var res = await fetch('/.netlify/functions/nova', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({messages: history}) });
+      var data = await res.json(); loading.remove();
       var reply = data.reply || 'Sorry, something went wrong. You can reach us on WhatsApp instead.';
-      addMsg(reply, 'rc-bot');
-      history.push({role:'assistant', content:reply});
-    } catch(e) {
-      loading.remove();
-      addMsg('Connection issue. You can reach us directly on WhatsApp instead, tap Get in touch above.', 'rc-bot');
-    }
+      addMsg(reply, 'rc-bot'); history.push({role:'assistant', content:reply});
+    } catch(e) { loading.remove(); addMsg('Connection issue. Reach us directly on WhatsApp instead.', 'rc-bot'); }
   }
-
   sendBtn.addEventListener('click', sendMessage);
   input.addEventListener('keypress', function(e){ if (e.key === 'Enter') sendMessage(); });
-
   waBtn.addEventListener('click', function(){
-    var name = document.getElementById('rc-name').value.trim();
+    var name = document.getElementById('rc-name-c').value.trim();
     var phone = document.getElementById('rc-phone').value.trim();
     var interest = document.getElementById('rc-interest').value;
     var msg = document.getElementById('rc-message').value.trim();
@@ -397,14 +495,8 @@ footer { background: var(--navy); padding: 26px 0; }
     if (phone) lines.push('Contact: ' + phone);
     if (interest) lines.push('Interested in: ' + interest);
     if (msg) lines.push('Message: ' + msg);
-    var text = encodeURIComponent(lines.join('\n'));
-    window.open('https://wa.me/919008020176?text=' + text, '_blank');
-    // Save the lead too, this never blocks or breaks the WhatsApp handoff above even if it fails.
-    fetch('/.netlify/functions/submit-lead', {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({ name: name, contact: phone, interest: interest, message: msg, source: 'nova_widget' })
-    }).catch(function(){});
+    window.open('https://wa.me/919008020176?text=' + encodeURIComponent(lines.join('\n')), '_blank');
+    fetch('/.netlify/functions/submit-lead', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ name: name, contact: phone, interest: interest, message: msg, source: 'nova_widget' }) }).catch(function(){});
   });
 })();
 </script>
