@@ -68,6 +68,8 @@ nav { position: sticky; top: 0; z-index: 50; background: var(--navy); border-bot
 .btn-ghost:hover { background: var(--navy); color: #fff; }
 .btn-wa { background: #25D366; color: #fff; border: none; }
 .btn-wa:hover { background: #22c55e; transform: translateY(-2px); }
+.btn-green { background: var(--green); color: #fff; }
+.btn-green:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(28,71,5,0.25); }
 /* SUBSCRIBE */
 .sub-band { background: linear-gradient(135deg,rgba(10,28,61,0.04),rgba(237,84,7,0.04)); border: 1px solid var(--line); border-radius: 16px; padding: 48px 40px; text-align: center; margin: 0 0 48px; }
 .sub-band .mono { display: block; margin-bottom: 12px; }
@@ -121,6 +123,12 @@ section { padding: 64px 0; position: relative; }
 .fact { background: var(--card); padding: 18px 22px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
 .fact .k { font-family: var(--label); font-weight: 700; font-size: 10.5px; letter-spacing: 0.4px; text-transform: uppercase; color: var(--text-faint); }
 .fact .v { font-family: var(--display); font-weight: 700; font-size: 15px; text-align: right; color: var(--navy); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media (max-width: 680px) { .contact-grid { grid-template-columns: 1fr; } }
+.contact-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 30px; text-align: center; }
+.contact-card .icon { font-size: 26px; margin-bottom: 14px; }
+.contact-card h3 { font-family: var(--display); font-size: 17px; font-weight: 700; margin-bottom: 8px; color: var(--navy); }
+.contact-card p { color: var(--text-dim); font-size: 13.5px; margin-bottom: 16px; }
 .connect { text-align: center; background: var(--navy); padding: 80px 0; margin-top: 40px; }
 .connect h2 { font-family: var(--display); font-size: clamp(26px, 4.6vw, 44px); font-weight: 700; letter-spacing: -0.7px; margin-bottom: 18px; line-height: 1.15; color: #ffffff; }
 .connect h2 .accent { color: var(--gold); }
@@ -214,7 +222,7 @@ footer { background: var(--navy); padding: 26px 0; }
       <div class="hero-text-col">
         <div class="eyebrow"><span class="mono">Applied AI Education &middot; Products &middot; Research</span></div>
         <h1>Most enterprise AI fails.<br>Not the model.<br><span class="accent">The method.</span></h1>
-        <p class="lead">FutureTalks India teaches practical AI skills and builds tools that put AI into real use. Grounded in <b>Lean Six Sigma discipline</b> and 14+ years inside enterprise transformation.</p>
+        <p class="lead">FutureTalks India is a registered AI education company, building practical tools and skills for India, not slideware, not theory. Grounded in <b>Lean Six Sigma discipline</b>, made available to everyone at a price that doesn't gatekeep.</p>
         <div class="cta-row">
           <a class="btn btn-primary" href="#subscribe">Join Free &rarr;</a>
           <a class="btn btn-ghost" href="frameworks.html">See frameworks</a>
@@ -229,6 +237,43 @@ footer { background: var(--navy); padding: 26px 0; }
 
     </div>
   </header>
+
+  <!-- CONNECT CARDS -->
+  <section style="padding-top:0;">
+    <style>@media (min-width:681px){ .contact-grid-3 { grid-template-columns: repeat(3,1fr); } }</style>
+    <div class="contact-grid contact-grid-3">
+      <div class="contact-card">
+        <div class="icon">&#128188;</div>
+        <h3>LinkedIn</h3>
+        <p>The best place to reach us. Fastest replies here.</p>
+        <a class="btn btn-primary" href="https://www.linkedin.com/company/futuretalksindia" target="_blank" rel="noopener">Message on LinkedIn</a>
+      </div>
+      <div class="contact-card">
+        <div class="icon">&#128241;</div>
+        <h3>WhatsApp</h3>
+        <p>Quick questions, fastest response, straight to the point.</p>
+        <a class="btn btn-green" href="https://wa.me/919008020176" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+      <div class="contact-card">
+        <div class="icon">&#9993;</div>
+        <h3>Email</h3>
+        <p>For proposals, partnerships, or anything longer-form.</p>
+        <a class="btn btn-ghost" href="mailto:futuretalks.india@gmail.com">futuretalks.india@gmail.com</a>
+      </div>
+      <div class="contact-card">
+        <div class="icon">&#128248;</div>
+        <h3>Instagram</h3>
+        <p>Behind-the-scenes, reels, and quick AI tips.</p>
+        <a class="btn btn-ghost" href="https://www.instagram.com/futuretalksindia" target="_blank" rel="noopener">@futuretalksindia</a>
+      </div>
+      <div class="contact-card">
+        <div class="icon">&#9654;</div>
+        <h3>YouTube</h3>
+        <p>Full episodes, tutorials, and framework walkthroughs.</p>
+        <a class="btn btn-ghost" href="https://www.youtube.com/@futuretalks_india" target="_blank" rel="noopener">Watch on YouTube</a>
+      </div>
+    </div>
+  </section>
 
   <!-- SUBSCRIBE BAND -->
   <div class="sub-band" id="subscribe">
