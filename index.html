@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FutureTalks India | Applied AI Education, Products & Research</title>
+<title>FutureTalks India | Applied AI Education, Products &amp; Research</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -87,6 +87,7 @@ nav { position: sticky; top: 0; z-index: 50; background: var(--navy); border-bot
 .sub-input:focus { border-color: var(--orange); }
 .sub-input::placeholder { color: var(--text-faint); }
 .sub-note { font-size: 11px; color: var(--text-faint); }
+.sub-error { display: none; color: #b3441f; font-size: 13px; font-weight: 500; margin-top: 4px; }
 .sub-success { display: none; padding: 14px; background: var(--green-soft); border: 1px solid rgba(28,71,5,.2); border-radius: 8px; color: var(--green); font-weight: 600; margin-top: 10px; }
 .sub-success.show { display: block; }
 @media(max-width:560px) { .sub-row { grid-template-columns: 1fr; } .sub-band { padding: 32px 20px; } }
@@ -214,7 +215,7 @@ footer { background: var(--navy); padding: 26px 0; }
         </div>
         <div class="live-ticker">
           <div class="tdot"></div>
-          <div id="ticker-text"><strong>New episode dropping soon</strong> — Interstellar Travel, Alien Life &amp; Life After Death</div>
+          <div id="ticker-text"><strong>New episode dropping soon</strong> &mdash; Interstellar Travel, Alien Life &amp; Life After Death</div>
         </div>
         <div class="quick-links">
           <a class="ql ql-linkedin" href="https://www.linkedin.com/company/futuretalksindia" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
@@ -253,7 +254,7 @@ footer { background: var(--navy); padding: 26px 0; }
         <div style="margin-top:14px">
           <a class="btn btn-wa" href="https://wa.me/919008020176" target="_blank" rel="noopener" style="display:inline-flex">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.943l6.266-1.443A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.373l-.36-.213-3.72.857.895-3.608-.234-.371A9.818 9.818 0 1112 21.818z"/></svg>
-            Chat on WhatsApp — +91 90080 20176
+            Chat on WhatsApp &mdash; +91 90080 20176
           </a>
         </div>
       </div>
@@ -265,18 +266,18 @@ footer { background: var(--navy); padding: 26px 0; }
   <div class="sub-band" id="subscribe">
     <span class="mono">Stay in the Loop</span>
     <h2>Get AI insights straight to you</h2>
-    <p>Weekly practical AI tips for Indian professionals — written by a practitioner, not a pundit. No spam. Ever.</p>
+    <p>Weekly practical AI tips for Indian professionals &mdash; written by a practitioner, not a pundit. No spam. Ever.</p>
     <form class="sub-form" id="sub-form" onsubmit="handleSubscribe(event)">
       <div class="sub-row">
         <input class="sub-input" id="sub-name" type="text" placeholder="Your name" required autocomplete="name"/>
         <input class="sub-input" id="sub-wa" type="tel" placeholder="WhatsApp number" autocomplete="tel"/>
       </div>
       <input class="sub-input" id="sub-email" type="email" placeholder="Email address" required autocomplete="email"/>
-      <button type="submit" id="sub-btn" class="btn btn-primary" style="width:100%;justify-content:center">Join Free — No Spam Ever</button>
+      <button type="submit" id="sub-btn" class="btn btn-primary" style="width:100%;justify-content:center">Join Free &mdash; No Spam Ever</button>
       <p class="sub-note">Your data stays with FutureTalks India only. Unsubscribe anytime.</p>
-        <p id="sub-error" style="display:none;color:#b3441f;font-size:13px;margin-top:4px;"></p>
+      <p class="sub-error" id="sub-error"></p>
     </form>
-    <div class="sub-success" id="sub-success">🎉 You are in! Check WhatsApp or email for a welcome message from RC.</div>
+    <div class="sub-success" id="sub-success">&#127881; You are in! Check WhatsApp or email for a welcome message from RC.</div>
   </div>
 
   <section class="thesis">
@@ -374,7 +375,7 @@ footer { background: var(--navy); padding: 26px 0; }
   </div>
 </footer>
 
-<!-- NOVA WIDGET (original, unchanged) -->
+<!-- NOVA WIDGET -->
 <div id="rc-widget">
   <button id="rc-toggle" aria-label="Chat with Nova">
     <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v12H8l-4 4V4z" fill="white"/></svg>
@@ -428,7 +429,7 @@ setInterval(function() {
   setTimeout(function() { el.innerHTML = TICKS[ti]; el.style.opacity = '1'; }, 300);
 }, 5000);
 
-// VISITOR TRACKING — uses existing Netlify submit-lead function so no Supabase key needed here
+// VISITOR TRACKING
 (function() {
   try {
     var vid = localStorage.getItem('fti_vid');
@@ -437,8 +438,6 @@ setInterval(function() {
       localStorage.setItem('fti_vid', vid);
     }
     var params = new URLSearchParams(window.location.search);
-    var src = params.get('utm_source') || document.referrer || 'direct';
-    // Store UTM for use in subscribe form
     if (params.get('utm_source')) {
       localStorage.setItem('fti_utm', JSON.stringify({
         source: params.get('utm_source'),
@@ -449,7 +448,10 @@ setInterval(function() {
   } catch(e) {}
 })();
 
-// SUBSCRIBE FORM — writes to ft_leads via the subscribe function
+// SUBSCRIBE FORM
+// Writes to ft_leads via /.netlify/functions/subscribe.
+// The visitor is only shown success if a row actually landed. Any failure is
+// surfaced instead of being swallowed, so a broken pipe is visible immediately.
 function handleSubscribe(e) {
   e.preventDefault();
   var name  = document.getElementById('sub-name').value.trim();
@@ -458,7 +460,7 @@ function handleSubscribe(e) {
   var btn   = document.getElementById('sub-btn');
   var errEl = document.getElementById('sub-error');
 
-  if (errEl) { errEl.style.display = 'none'; }
+  errEl.style.display = 'none';
   btn.textContent = 'Joining...';
   btn.disabled = true;
 
@@ -480,7 +482,9 @@ function handleSubscribe(e) {
     })
   })
   .then(function (res) {
-    return res.json().then(function (data) { return { ok: res.ok, data: data }; });
+    return res.json()
+      .catch(function () { return {}; })
+      .then(function (data) { return { ok: res.ok, data: data }; });
   })
   .then(function (r) {
     if (r.ok && r.data.ok) { showSuccess(name); return; }
@@ -494,8 +498,9 @@ function handleSubscribe(e) {
 function showError(msg) {
   var btn = document.getElementById('sub-btn');
   var errEl = document.getElementById('sub-error');
-  if (errEl) { errEl.textContent = msg; errEl.style.display = 'block'; }
-  btn.textContent = 'Join Free — No Spam Ever';
+  errEl.textContent = msg;
+  errEl.style.display = 'block';
+  btn.innerHTML = 'Join Free &mdash; No Spam Ever';
   btn.disabled = false;
 }
 
@@ -503,10 +508,10 @@ function showSuccess(name) {
   document.getElementById('sub-success').classList.add('show');
   document.getElementById('sub-form').style.display = 'none';
   var msg = encodeURIComponent('Hi RC! I just subscribed on futuretalksindia.com. I am ' + name + ' and I want to learn AI practically. Looking forward to the content!');
-  setTimeout(function () { window.open('https://wa.me/919008020176?text=' + msg, '_blank'); }, 1500);
+  setTimeout(function() { window.open('https://wa.me/919008020176?text=' + msg, '_blank'); }, 1500);
 }
 
-// NOVA WIDGET (original code)
+// NOVA WIDGET
 (function(){
   var history = [];
   var toggle = document.getElementById('rc-toggle');
@@ -558,7 +563,20 @@ function showSuccess(name) {
     if (interest) lines.push('Interested in: ' + interest);
     if (msg) lines.push('Message: ' + msg);
     window.open('https://wa.me/919008020176?text=' + encodeURIComponent(lines.join('\n')), '_blank');
-    fetch('/.netlify/functions/submit-lead', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ name: name, contact: phone, interest: interest, message: msg, source: 'nova_widget' }) }).catch(function(){});
+    // Best-effort logging. The WhatsApp handoff above is the real delivery path,
+    // so a failure here never blocks the visitor.
+    var looksLikeEmail = phone.indexOf('@') > -1;
+    fetch('/.netlify/functions/subscribe', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        name: name,
+        email: looksLikeEmail ? phone : '',
+        phone: looksLikeEmail ? '' : phone,
+        interest: interest || 'Nova enquiry',
+        source: 'nova_widget'
+      })
+    }).catch(function(){});
   });
 })();
 </script>
