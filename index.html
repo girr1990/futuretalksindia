@@ -50,6 +50,14 @@ nav { position: sticky; top: 0; z-index: 50; background: var(--navy); border-bot
 @keyframes blink { 0%,100%{opacity:1}50%{opacity:.3} }
 #ticker-text { transition: opacity .3s; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 #ticker-text strong { color: var(--navy); }
+/* QUICK LINKS STRIP */
+.quick-links { display: flex; justify-content: center; align-items: center; gap: 18px; margin: 40px 0 12px; }
+.ql { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; flex-shrink: 0; }
+.ql:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(10,28,61,0.18); }
+.ql-linkedin { background: var(--orange); color: #fff; }
+.ql-whatsapp { background: #25D366; color: #fff; }
+.ql-outline { background: transparent; border: 2px solid var(--navy); color: var(--navy); }
+.ql-outline:hover { background: var(--navy); color: #fff; }
 /* TEXT RIGHT */
 .hero-text-col {}
 .hero .eyebrow { margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
@@ -68,8 +76,6 @@ nav { position: sticky; top: 0; z-index: 50; background: var(--navy); border-bot
 .btn-ghost:hover { background: var(--navy); color: #fff; }
 .btn-wa { background: #25D366; color: #fff; border: none; }
 .btn-wa:hover { background: #22c55e; transform: translateY(-2px); }
-.btn-green { background: var(--green); color: #fff; }
-.btn-green:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(28,71,5,0.25); }
 /* SUBSCRIBE */
 .sub-band { background: linear-gradient(135deg,rgba(10,28,61,0.04),rgba(237,84,7,0.04)); border: 1px solid var(--line); border-radius: 16px; padding: 48px 40px; text-align: center; margin: 0 0 48px; }
 .sub-band .mono { display: block; margin-bottom: 12px; }
@@ -123,12 +129,6 @@ section { padding: 64px 0; position: relative; }
 .fact { background: var(--card); padding: 18px 22px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
 .fact .k { font-family: var(--label); font-weight: 700; font-size: 10.5px; letter-spacing: 0.4px; text-transform: uppercase; color: var(--text-faint); }
 .fact .v { font-family: var(--display); font-weight: 700; font-size: 15px; text-align: right; color: var(--navy); }
-.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-@media (max-width: 680px) { .contact-grid { grid-template-columns: 1fr; } }
-.contact-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 30px; text-align: center; }
-.contact-card .icon { font-size: 26px; margin-bottom: 14px; }
-.contact-card h3 { font-family: var(--display); font-size: 17px; font-weight: 700; margin-bottom: 8px; color: var(--navy); }
-.contact-card p { color: var(--text-dim); font-size: 13.5px; margin-bottom: 16px; }
 .connect { text-align: center; background: var(--navy); padding: 80px 0; margin-top: 40px; }
 .connect h2 { font-family: var(--display); font-size: clamp(26px, 4.6vw, 44px); font-weight: 700; letter-spacing: -0.7px; margin-bottom: 18px; line-height: 1.15; color: #ffffff; }
 .connect h2 .accent { color: var(--gold); }
@@ -216,6 +216,23 @@ footer { background: var(--navy); padding: 26px 0; }
           <div class="tdot"></div>
           <div id="ticker-text"><strong>New episode dropping soon</strong> — Interstellar Travel, Alien Life &amp; Life After Death</div>
         </div>
+        <div class="quick-links">
+          <a class="ql ql-linkedin" href="https://www.linkedin.com/company/futuretalksindia" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+            <svg width="28" height="28" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
+          </a>
+          <a class="ql ql-whatsapp" href="https://wa.me/919008020176" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.943l6.266-1.443A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.373l-.36-.213-3.72.857.895-3.608-.234-.371A9.818 9.818 0 1112 21.818z"/></svg>
+          </a>
+          <a class="ql ql-outline" href="mailto:futuretalks.india@gmail.com" aria-label="Email" title="Email">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </a>
+          <a class="ql ql-outline" href="https://www.instagram.com/futuretalksindia" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+            <svg width="26" height="26" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+          </a>
+          <a class="ql ql-outline" href="https://www.youtube.com/@futuretalks_india" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+            <svg width="28" height="28" viewBox="0 0 576 512" fill="currentColor" aria-hidden="true"><path d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6-11.4 42.9-11.4 132.3-11.4 132.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232 337.6V174.4L361 256l-129 81.6z"/></svg>
+          </a>
+        </div>
       </div>
 
       <!-- RIGHT: TEXT + CTA -->
@@ -237,43 +254,6 @@ footer { background: var(--navy); padding: 26px 0; }
 
     </div>
   </header>
-
-  <!-- CONNECT CARDS -->
-  <section style="padding-top:0;">
-    <style>@media (min-width:681px){ .contact-grid-3 { grid-template-columns: repeat(3,1fr); } }</style>
-    <div class="contact-grid contact-grid-3">
-      <div class="contact-card">
-        <div class="icon">&#128188;</div>
-        <h3>LinkedIn</h3>
-        <p>The best place to reach us. Fastest replies here.</p>
-        <a class="btn btn-primary" href="https://www.linkedin.com/company/futuretalksindia" target="_blank" rel="noopener">Message on LinkedIn</a>
-      </div>
-      <div class="contact-card">
-        <div class="icon">&#128241;</div>
-        <h3>WhatsApp</h3>
-        <p>Quick questions, fastest response, straight to the point.</p>
-        <a class="btn btn-green" href="https://wa.me/919008020176" target="_blank" rel="noopener">Chat on WhatsApp</a>
-      </div>
-      <div class="contact-card">
-        <div class="icon">&#9993;</div>
-        <h3>Email</h3>
-        <p>For proposals, partnerships, or anything longer-form.</p>
-        <a class="btn btn-ghost" href="mailto:futuretalks.india@gmail.com">futuretalks.india@gmail.com</a>
-      </div>
-      <div class="contact-card">
-        <div class="icon">&#128248;</div>
-        <h3>Instagram</h3>
-        <p>Behind-the-scenes, reels, and quick AI tips.</p>
-        <a class="btn btn-ghost" href="https://www.instagram.com/futuretalksindia" target="_blank" rel="noopener">@futuretalksindia</a>
-      </div>
-      <div class="contact-card">
-        <div class="icon">&#9654;</div>
-        <h3>YouTube</h3>
-        <p>Full episodes, tutorials, and framework walkthroughs.</p>
-        <a class="btn btn-ghost" href="https://www.youtube.com/@futuretalks_india" target="_blank" rel="noopener">Watch on YouTube</a>
-      </div>
-    </div>
-  </section>
 
   <!-- SUBSCRIBE BAND -->
   <div class="sub-band" id="subscribe">
@@ -346,16 +326,16 @@ footer { background: var(--navy); padding: 26px 0; }
   <section id="about">
     <div class="sec-head">
       <span class="mono">About</span>
-      <h2>14 years turning operations into advantage</h2>
+      <h2>Discipline over hype</h2>
     </div>
     <div class="about-grid">
       <div class="about-text">
         <p>FutureTalks India is an applied AI education company built on a simple belief: <b>process discipline is what separates AI that ships from AI that demos.</b></p>
-        <p>Founded by <b>Rahul Choudhary</b>, who has spent 14+ years inside large-scale finance and operations transformation across <b>TCS, Genpact, and Accenture</b>.</p>
+        <p>Built by RC. Grounded in Lean Six Sigma discipline and a personal practice of stillness and focus (Inner Engineering, Shambhavi), FutureTalks India is built the same way: no noise, no shortcuts, just what works.</p>
       </div>
       <div class="facts">
         <div class="fact"><span class="k">Founded</span><span class="v">2026, Bengaluru</span></div>
-        <div class="fact"><span class="k">Founder</span><span class="v">Rahul Choudhary</span></div>
+        <div class="fact"><span class="k">Founder</span><span class="v">RC</span></div>
         <div class="fact"><span class="k">Certification</span><span class="v">LSS Black Belt</span></div>
         <div class="fact"><span class="k">Focus</span><span class="v">Education, Products, Research</span></div>
       </div>
