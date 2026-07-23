@@ -16,4 +16,4 @@ Powered by Claude (Anthropic). Requires `ANTHROPIC_API_KEY` environment variable
 - tripbuddyindia.netlify.app (Buddy app)
 
 ## Founder
-Rahul Choudhary — futuretalks.india@gmail.com
+RC — futuretalks.india@gmail.com
