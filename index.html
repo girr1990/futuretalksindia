@@ -274,6 +274,7 @@ footer { background: var(--navy); padding: 26px 0; }
       <input class="sub-input" id="sub-email" type="email" placeholder="Email address" required autocomplete="email"/>
       <button type="submit" id="sub-btn" class="btn btn-primary" style="width:100%;justify-content:center">Join Free — No Spam Ever</button>
       <p class="sub-note">Your data stays with FutureTalks India only. Unsubscribe anytime.</p>
+        <p id="sub-error" style="display:none;color:#b3441f;font-size:13px;margin-top:4px;"></p>
     </form>
     <div class="sub-success" id="sub-success">🎉 You are in! Check WhatsApp or email for a welcome message from RC.</div>
   </div>
@@ -448,38 +449,61 @@ setInterval(function() {
   } catch(e) {}
 })();
 
-// SUBSCRIBE FORM — pipes through existing submit-lead Netlify function
+// SUBSCRIBE FORM — writes to ft_leads via the subscribe function
 function handleSubscribe(e) {
   e.preventDefault();
-  var name = document.getElementById('sub-name').value.trim();
+  var name  = document.getElementById('sub-name').value.trim();
   var email = document.getElementById('sub-email').value.trim();
-  var wa = document.getElementById('sub-wa').value.trim();
-  var btn = document.getElementById('sub-btn');
-  btn.textContent = 'Joining...'; btn.disabled = true;
+  var wa    = document.getElementById('sub-wa').value.trim();
+  var btn   = document.getElementById('sub-btn');
+  var errEl = document.getElementById('sub-error');
+
+  if (errEl) { errEl.style.display = 'none'; }
+  btn.textContent = 'Joining...';
+  btn.disabled = true;
+
+  var utm = {};
+  try { utm = JSON.parse(localStorage.getItem('fti_utm') || '{}'); } catch (err) {}
   try {
-    var utm = JSON.parse(localStorage.getItem('fti_utm') || '{}');
     localStorage.setItem('fti_profile', JSON.stringify({ name: name, email: email, wa: wa }));
-    // Call the existing submit-lead function — same one Nova uses, no new infra needed
-    fetch('/.netlify/functions/submit-lead', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name: name,
-        email: email,
-        whatsapp: wa,
-        contact: wa || email,
-        source: 'website_subscribe_' + (utm.source || 'direct'),
-        interest: 'Newsletter',
-        message: 'Subscribed from hero section'
-      })
-    }).then(function() { showSuccess(name); }).catch(function() { showSuccess(name); });
-  } catch(e) { showSuccess(name); }
+  } catch (err) {}
+
+  fetch('/.netlify/functions/subscribe', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: name,
+      email: email,
+      phone: wa,
+      interest: 'Newsletter',
+      source: 'website_subscribe_' + (utm.source || 'direct')
+    })
+  })
+  .then(function (res) {
+    return res.json().then(function (data) { return { ok: res.ok, data: data }; });
+  })
+  .then(function (r) {
+    if (r.ok && r.data.ok) { showSuccess(name); return; }
+    showError(r.data.error || 'Something went wrong. Please try again.');
+  })
+  .catch(function () {
+    showError('Could not reach the server. Please try again.');
+  });
 }
+
+function showError(msg) {
+  var btn = document.getElementById('sub-btn');
+  var errEl = document.getElementById('sub-error');
+  if (errEl) { errEl.textContent = msg; errEl.style.display = 'block'; }
+  btn.textContent = 'Join Free — No Spam Ever';
+  btn.disabled = false;
+}
+
 function showSuccess(name) {
   document.getElementById('sub-success').classList.add('show');
   document.getElementById('sub-form').style.display = 'none';
   var msg = encodeURIComponent('Hi RC! I just subscribed on futuretalksindia.com. I am ' + name + ' and I want to learn AI practically. Looking forward to the content!');
-  setTimeout(function() { window.open('https://wa.me/919008020176?text=' + msg, '_blank'); }, 1500);
+  setTimeout(function () { window.open('https://wa.me/919008020176?text=' + msg, '_blank'); }, 1500);
 }
 
 // NOVA WIDGET (original code)
