@@ -65,13 +65,8 @@ nav { position: sticky; top: 0; z-index: 50; background: var(--navy); border-bot
 .bb-visual { display: flex; align-items: center; gap: 22px; margin: 22px 0 26px; flex-wrap: wrap; }
 .bb-phone { width: 108px; height: 216px; border-radius: 20px; background: var(--navy); padding: 12px 5px 5px; box-shadow: 0 20px 40px rgba(10,28,61,0.25); flex-shrink: 0; position: relative; }
 .bb-phone::before { content: ''; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); width: 32px; height: 4px; border-radius: 3px; background: rgba(255,255,255,0.3); }
-.bb-phone-screen { background: var(--cream); border-radius: 12px; height: 100%; padding: 10px 8px; display: flex; flex-direction: column; gap: 6px; }
-.bb-row { height: 7px; border-radius: 4px; background: var(--line-2); }
-.bb-row.accent { background: var(--orange); width: 45%; height: 9px; }
-.bb-mini-card { background: #fff; border: 1px solid var(--line); border-radius: 7px; padding: 6px 8px; margin-top: 2px; }
-.bb-mini-card .lbl { font-family: var(--label); font-size: 7.5px; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; color: var(--text-faint); }
-.bb-mini-card .amt { font-family: var(--display); font-weight: 700; font-size: 13px; color: var(--navy); }
-.bb-mini-card.green .amt { color: var(--green); }
+.bb-phone-screen { background: var(--cream); border-radius: 12px; height: 100%; overflow: hidden; }
+.bb-phone-screen img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
 .bb-qr-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; }
 .bb-qr-wrap svg { width: 84px; height: 84px; background: #fff; border-radius: 8px; padding: 6px; border: 1px solid var(--line); box-shadow: 0 8px 18px rgba(10,28,61,0.1); }
 .bb-qr-wrap span { font-family: var(--label); font-weight: 600; font-size: 10.5px; letter-spacing: 0.3px; text-transform: uppercase; color: var(--text-faint); text-align: center; }
@@ -312,14 +307,9 @@ footer { background: var(--navy); padding: 26px 0; }
     </div>
     <div class="buddy-showcase">
       <div class="bb-visual">
-        <div class="bb-phone" aria-hidden="true">
+        <div class="bb-phone">
           <div class="bb-phone-screen">
-            <div class="bb-row accent"></div>
-            <div class="bb-row" style="width:70%"></div>
-            <div class="bb-mini-card green"><div class="lbl">You're owed</div><div class="amt">&#8377;1,240</div></div>
-            <div class="bb-mini-card"><div class="lbl">Trip total</div><div class="amt">&#8377;18,600</div></div>
-            <div class="bb-row" style="width:55%"></div>
-            <div class="bb-row" style="width:40%"></div>
+            <img src="photos/buddy-app-screenshot.jpg" alt="Buddy app home screen showing My Finances, Events, and Trips">
           </div>
         </div>
         <div class="bb-qr-wrap">
