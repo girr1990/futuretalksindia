@@ -43,7 +43,7 @@ PRODUCTS:
    - AI receipt scanner, photograph bill, auto-fills items
    - Settle via UPI in one tap
    - Works on any phone, installable as PWA
-   - Link: https://tripbuddyindia.netlify.app
+   - Link: https://buddy.futuretalksindia.com
 
 2. FutureTalks Studio (in development)
    - Podcast recording and publishing platform

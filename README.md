@@ -19,7 +19,7 @@ Official website for FutureTalks India — what India, and normal people, can bu
 The site's AI assistant, powered by Claude (Anthropic) via `netlify/functions/nova.js`. Requires `ANTHROPIC_API_KEY` set in Netlify.
 
 ## Buddy
-Fairness-based group expense splitting for trips: AI receipt scanning, budget planning, and a splitting engine that accounts for who actually drank, ate, and opted in. FutureTalks India's flagship proof product — concrete evidence of what a normal person can ship with AI. Live at buddy.futuretalksindia.com (also tripbuddyindia.netlify.app).
+Fairness-based group expense splitting for trips: AI receipt scanning, budget planning, and a splitting engine that accounts for who actually drank, ate, and opted in. FutureTalks India's flagship proof product — concrete evidence of what a normal person can ship with AI. Live at buddy.futuretalksindia.com.
 
 ## Academy
 All cohort and learning content management happens at academy.futuretalksindia.com, a separate site/repo. This repo links out to it from the nav and the homepage teaser section, but does not contain its code and no longer hosts any cohort landing page or registration flow of its own (the former `lssai-blackbelt.html` cohort page was retired and now 301-redirects to Academy — see `netlify.toml`).
