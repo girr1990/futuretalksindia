@@ -58,6 +58,6 @@ FutureTalks India has killed all enterprise-consulting language and framing, sit
 
 - Do not reintroduce enterprise-consulting language (CFO/CTO pitches, "transformation leader" career framing, "your enterprise," consulting-services positioning) anywhere on the site.
 - The four proprietary frameworks (LSS-AI Framework, Agentic Maturity Model, AI Value Scorecard, Use Case Heatmap) stay, but are framed as "how we build," RC's own operating method, never as a service sold to enterprises.
-- The cohort (LSS-AI Black Belt) stays pay-what-you-wish and open to anyone who wants to learn to build with AI, not gated to professionals in enterprise-adjacent roles.
-- Academy (academy.futuretalksindia.com) is a separate site/repo carrying the education layer forward; Frameworks is demoted from primary site navigation to a section within the homepage narrative.
+- The LSS-AI Black Belt cohort is no longer managed on this site. Its dedicated landing page (`lssai-blackbelt.html`) was retired and now 301-redirects to Academy — do not recreate a cohort registration flow here; route people to Academy instead.
+- Academy (academy.futuretalksindia.com) is a separate site/repo that owns all cohort and learning content management going forward; Frameworks is demoted from primary site navigation to a section within the homepage narrative.
 - When in doubt, ask: "would this line make sense in a founder's personal build log?" If the answer is no, and it only makes sense in an enterprise sales deck, rewrite it.
