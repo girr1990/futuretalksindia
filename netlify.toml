@@ -2,3 +2,9 @@
   publish = "."
   functions = "netlify/functions"
   command = "npm install"
+
+[[redirects]]
+  from = "/lssai-blackbelt.html"
+  to = "https://academy.futuretalksindia.com/"
+  status = 301
+  force = true

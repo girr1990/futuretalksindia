@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FutureTalks India | Applied AI Education, Products &amp; Research</title>
+<title>FutureTalksIndia | Applied AI Education, Products &amp; Research</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -65,13 +65,8 @@ nav { position: sticky; top: 0; z-index: 50; background: var(--navy); border-bot
 .bb-visual { display: flex; align-items: center; gap: 22px; margin: 22px 0 26px; flex-wrap: wrap; }
 .bb-phone { width: 108px; height: 216px; border-radius: 20px; background: var(--navy); padding: 12px 5px 5px; box-shadow: 0 20px 40px rgba(10,28,61,0.25); flex-shrink: 0; position: relative; }
 .bb-phone::before { content: ''; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); width: 32px; height: 4px; border-radius: 3px; background: rgba(255,255,255,0.3); }
-.bb-phone-screen { background: var(--cream); border-radius: 12px; height: 100%; padding: 10px 8px; display: flex; flex-direction: column; gap: 6px; }
-.bb-row { height: 7px; border-radius: 4px; background: var(--line-2); }
-.bb-row.accent { background: var(--orange); width: 45%; height: 9px; }
-.bb-mini-card { background: #fff; border: 1px solid var(--line); border-radius: 7px; padding: 6px 8px; margin-top: 2px; }
-.bb-mini-card .lbl { font-family: var(--label); font-size: 7.5px; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; color: var(--text-faint); }
-.bb-mini-card .amt { font-family: var(--display); font-weight: 700; font-size: 13px; color: var(--navy); }
-.bb-mini-card.green .amt { color: var(--green); }
+.bb-phone-screen { background: var(--cream); border-radius: 12px; height: 100%; overflow: hidden; }
+.bb-phone-screen img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
 .bb-qr-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; }
 .bb-qr-wrap svg { width: 84px; height: 84px; background: #fff; border-radius: 8px; padding: 6px; border: 1px solid var(--line); box-shadow: 0 8px 18px rgba(10,28,61,0.1); }
 .bb-qr-wrap span { font-family: var(--label); font-weight: 600; font-size: 10.5px; letter-spacing: 0.3px; text-transform: uppercase; color: var(--text-faint); text-align: center; }
@@ -227,7 +222,7 @@ footer { background: var(--navy); padding: 26px 0; }
         <path d="M6 46 L22 26 L32 38 L42 24 L58 46 Z" fill="#1c4705"/>
         <path d="M6 46 L58 46 L58 50 L6 50 Z" fill="#0a1c3d"/>
       </svg>
-      <span class="word"><span class="w1">Future</span><span class="w2">Talks</span> <span class="w3">India</span></span>
+      <span class="word"><span class="w1">Future</span><span class="w2">Talks</span><span class="w3">India</span></span>
     </a>
     <div class="nav-links">
       <a href="index.html" class="active">Home</a>
@@ -251,7 +246,7 @@ footer { background: var(--navy); padding: 26px 0; }
             src="https://www.youtube.com/embed/RBSzPZ_7jM8?controls=1&rel=0&modestbranding=1"
             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
-            title="FutureTalks India Introduction">
+            title="FutureTalksIndia Introduction">
           </iframe>
         </div>
         <div class="live-ticker">
@@ -294,7 +289,7 @@ footer { background: var(--navy); padding: 26px 0; }
       <div class="hero-text-col">
         <div class="eyebrow"><span class="mono">See What We're Building</span></div>
         <h1>Not just talking about AI.<br><span class="accent">Building with it.</span></h1>
-        <p class="lead">At FutureTalks India, we're learning with AI, building with it, and turning ideas into useful experiences, out in the open, one product at a time.</p>
+        <p class="lead">At FutureTalksIndia, we're learning with AI, building with it, and turning ideas into useful experiences, out in the open, one product at a time.</p>
         <div class="cta-row">
           <a class="btn btn-primary" href="#buddy">Meet Buddy &rarr;</a>
         </div>
@@ -312,14 +307,9 @@ footer { background: var(--navy); padding: 26px 0; }
     </div>
     <div class="buddy-showcase">
       <div class="bb-visual">
-        <div class="bb-phone" aria-hidden="true">
+        <div class="bb-phone">
           <div class="bb-phone-screen">
-            <div class="bb-row accent"></div>
-            <div class="bb-row" style="width:70%"></div>
-            <div class="bb-mini-card green"><div class="lbl">You're owed</div><div class="amt">&#8377;1,240</div></div>
-            <div class="bb-mini-card"><div class="lbl">Trip total</div><div class="amt">&#8377;18,600</div></div>
-            <div class="bb-row" style="width:55%"></div>
-            <div class="bb-row" style="width:40%"></div>
+            <img src="photos/buddy-app-screenshot.jpg" alt="Buddy app home screen showing My Finances, Events, and Trips">
           </div>
         </div>
         <div class="bb-qr-wrap">
@@ -356,7 +346,7 @@ footer { background: var(--navy); padding: 26px 0; }
       </div>
       <input class="sub-input" id="sub-email" type="email" placeholder="Email address" required autocomplete="email"/>
       <button type="submit" id="sub-btn" class="btn btn-primary" style="width:100%;justify-content:center">Join Free &mdash; No Spam Ever</button>
-      <p class="sub-note">Your data stays with FutureTalks India only. Unsubscribe anytime.</p>
+      <p class="sub-note">Your data stays with FutureTalksIndia only. Unsubscribe anytime.</p>
       <p class="sub-error" id="sub-error"></p>
     </form>
     <div class="sub-success" id="sub-success">&#127881; You are in! Check WhatsApp or email for a welcome message from RC.</div>
@@ -419,33 +409,6 @@ footer { background: var(--navy); padding: 26px 0; }
     </div>
 
     <div class="acc-section">
-      <button class="acc-trigger" aria-expanded="false" aria-controls="acc-cohort" id="acc-cohort-trigger">
-        <div class="acc-trigger-text">
-          <span class="mono">Upcoming Session</span>
-          <h2>LSS-AI Black Belt, Cohort 01</h2>
-          <p>A 12-week, mentor-led cohort built around the four frameworks above. Pay what you wish, it keeps the platform running.</p>
-        </div>
-        <span class="acc-icon" aria-hidden="true">+</span>
-      </button>
-      <div class="acc-content" id="acc-cohort" data-open="false" inert role="region" aria-labelledby="acc-cohort-trigger">
-        <div class="acc-content-inner">
-          <div class="acc-content-body">
-            <div class="fw-block" style="margin-bottom:0;">
-              <div class="fw-cols" style="margin-bottom:20px;">
-                <div class="fw-col"><div class="k">Starts</div><div class="v">August 4, 2026</div></div>
-                <div class="fw-col"><div class="k">Format</div><div class="v">12 weeks, live sessions with RC</div></div>
-                <div class="fw-col"><div class="k">Price</div><div class="v">Pay what you wish, no fixed fee</div></div>
-              </div>
-              <div class="cta-row">
-                <a class="btn btn-primary" href="lssai-blackbelt.html">See full details &amp; register &rarr;</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="acc-section">
       <button class="acc-trigger" aria-expanded="false" aria-controls="acc-build" id="acc-build-trigger">
         <div class="acc-trigger-text">
           <span class="mono">What We Build</span>
@@ -481,8 +444,8 @@ footer { background: var(--navy); padding: 26px 0; }
           <div class="acc-content-body">
             <div class="about-grid">
               <div class="about-text">
-                <p>FutureTalks India is an applied AI education company built on a simple belief: <b>process discipline is what separates AI that ships from AI that demos.</b></p>
-                <p>Built by RC. Grounded in Lean Six Sigma discipline and a personal practice of stillness and focus (Inner Engineering, Shambhavi), FutureTalks India is built the same way: no noise, no shortcuts, just what works.</p>
+                <p>FutureTalksIndia is an applied AI education company built on a simple belief: <b>process discipline is what separates AI that ships from AI that demos.</b></p>
+                <p>Built by RC. Grounded in Lean Six Sigma discipline and a personal practice of stillness and focus (Inner Engineering, Shambhavi), FutureTalksIndia is built the same way: no noise, no shortcuts, just what works.</p>
               </div>
               <div class="facts">
                 <div class="fact"><span class="k">Founded</span><span class="v">2026, Bengaluru</span></div>
@@ -511,7 +474,7 @@ footer { background: var(--navy); padding: 26px 0; }
 
 <footer>
   <div class="wrap foot-inner">
-    <span class="mono">&copy; FutureTalks India Private Limited. All rights reserved.</span>
+    <span class="mono">&copy; FutureTalksIndia Private Limited. All rights reserved.</span>
     <div class="foot-links">
       <a href="mailto:futuretalks.india@gmail.com">Email</a>
       <a href="https://wa.me/919008020176" target="_blank" rel="noopener">WhatsApp</a>
@@ -544,7 +507,7 @@ footer { background: var(--navy); padding: 26px 0; }
           <circle cx="36" cy="10" r="2.4" fill="#f7e017"/>
           <path d="M36 10 L38 4" stroke="#f7e017" stroke-width="1.6" stroke-linecap="round"/>
         </svg>
-        <div><div id="rc-title">Nova</div><div id="rc-sub">FutureTalks India assistant</div></div>
+        <div><div id="rc-title">Nova</div><div id="rc-sub">FutureTalksIndia assistant</div></div>
       </div>
       <div style="display:flex; align-items:center; gap:2px;">
         <button id="rc-voice-toggle" type="button" aria-label="Hear Nova's replies out loud" aria-pressed="false" title="Hear replies out loud" hidden>
@@ -558,7 +521,7 @@ footer { background: var(--navy); padding: 26px 0; }
       <button class="rc-tab" data-tab="contact">Get in touch</button>
     </div>
     <div id="rc-chat-view">
-      <div id="rc-messages"><div class="rc-msg rc-bot">Hi, I'm Nova. Ask me anything about FutureTalks India, Buddy, or our frameworks.</div></div>
+      <div id="rc-messages"><div class="rc-msg rc-bot">Hi, I'm Nova. Ask me anything about FutureTalksIndia, Buddy, or our frameworks.</div></div>
       <div id="rc-input-row">
         <button id="rc-mic" type="button" aria-label="Speak your question" aria-pressed="false" title="Speak instead of typing" hidden>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 15c1.66 0 3-1.34 3-3V6c0-1.66-1.34-3-3-3S9 4.34 9 6v6c0 1.66 1.34 3 3 3zm5-3c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-2.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
@@ -587,8 +550,6 @@ footer { background: var(--navy); padding: 26px 0; }
 // TICKER
 var TICKS = [
   '<strong>New episode dropping soon</strong> \u2014 Interstellar Travel, Alien Life & Life After Death',
-  '<strong>AI for Bharat series</strong> launching August 2026',
-  '<strong>LSS-AI Black Belt Cohort 01</strong> \u2014 starts August 4, register now',
   '<strong>Buddy is live</strong> \u2014 smart expense splitting for group trips',
   '<strong>Weekly AI tips</strong> \u2014 subscribe above to get them on WhatsApp'
 ];
@@ -779,6 +740,19 @@ document.querySelectorAll('.acc-trigger').forEach(function (btn) {
       else { chatView.style.display = 'none'; contactView.style.display = 'flex'; }
     });
   });
+  function stripMarkdown(text){
+    return String(text)
+      .replace(/\*\*(.*?)\*\*/g, '$1')
+      .replace(/\*(.*?)\*/g, '$1')
+      .replace(/^#{1,6}\s+/gm, '')
+      .replace(/^[-*]\s+/gm, '')
+      .replace(/`([^`]*)`/g, '$1')
+      .replace(/\[(.*?)\]\(.*?\)/g, '$1')
+      .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{2190}-\u{21FF}\u{2B00}-\u{2BFF}️]/gu, '')
+      .replace(/[ \t]{2,}/g, ' ')
+      .replace(/[ \t]+\n/g, '\n')
+      .trim();
+  }
   function addMsg(text, cls){
     var d = document.createElement('div');
     d.className = 'rc-msg ' + cls; d.textContent = text;
@@ -786,12 +760,13 @@ document.querySelectorAll('.acc-trigger').forEach(function (btn) {
   }
   async function sendMessage(){
     var text = input.value.trim(); if (!text) return;
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
     addMsg(text, 'rc-user'); history.push({role:'user', content:text}); input.value = '';
     var loading = addMsg('Thinking...', 'rc-bot rc-loading');
     try {
       var res = await fetch('/.netlify/functions/nova', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({messages: history}) });
       var data = await res.json(); loading.remove();
-      var reply = data.reply || 'Sorry, something went wrong. You can reach us on WhatsApp instead.';
+      var reply = stripMarkdown(data.reply || 'Sorry, something went wrong. You can reach us on WhatsApp instead.');
       addMsg(reply, 'rc-bot'); history.push({role:'assistant', content:reply}); speak(reply);
     } catch(e) { loading.remove(); addMsg('Connection issue. Reach us directly on WhatsApp instead.', 'rc-bot'); }
   }
@@ -802,7 +777,7 @@ document.querySelectorAll('.acc-trigger').forEach(function (btn) {
     var phone = document.getElementById('rc-phone').value.trim();
     var interest = document.getElementById('rc-interest').value;
     var msg = document.getElementById('rc-message').value.trim();
-    var lines = ['Hi, I am reaching out from the FutureTalks India website.'];
+    var lines = ['Hi, I am reaching out from the FutureTalksIndia website.'];
     if (name) lines.push('Name: ' + name);
     if (phone) lines.push('Contact: ' + phone);
     if (interest) lines.push('Interested in: ' + interest);
