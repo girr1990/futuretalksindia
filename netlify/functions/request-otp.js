@@ -38,7 +38,7 @@ exports.handler = async (event) => {
     });
 
     await transporter.sendMail({
-      from: `FutureTalks India Admin <${GMAIL_USER}>`,
+      from: `FutureTalksIndia Admin <${GMAIL_USER}>`,
       to: ADMIN_EMAIL,
       subject: `Your FTI admin login code: ${otp}`,
       text: `Your login code is ${otp}. It expires in 10 minutes. If you didn't request this, ignore this email.`

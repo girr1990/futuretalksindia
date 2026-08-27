@@ -1,4 +1,4 @@
-# FutureTalks India Project Context
+# FutureTalksIndia Project Context
 
 > **Applied AI for a Better Tomorrow**
 
@@ -16,7 +16,7 @@ When conflicts arise, this document takes precedence over assumptions.
 
 ## Company
 
-**Organization:** FutureTalks India Private Limited
+**Organization:** FutureTalksIndia Private Limited
 
 **Mission**
 
@@ -40,12 +40,12 @@ Build an ecosystem of AI-powered products that help individuals, professionals a
 
 ## Repositioning Decision (August 2026)
 
-FutureTalks India has killed all enterprise-consulting language and framing, site-wide. This is a hard steer, not a wording tweak, and every future AI assistant editing this repo should treat it as a constraint, not a suggestion.
+FutureTalksIndia has killed all enterprise-consulting language and framing, site-wide. This is a hard steer, not a wording tweak, and every future AI assistant editing this repo should treat it as a constraint, not a suggestion.
 
 **What changed:**
 
 - **Old story:** an AI transformation consultancy selling methodology and enablement to enterprises, speaking to CFOs, executive sponsors, and transformation leaders.
-- **New story:** what India, and normal people, can actually build with AI. FutureTalks India is a practitioner's build log turned into education and products, not a consulting shop.
+- **New story:** what India, and normal people, can actually build with AI. FutureTalksIndia is a practitioner's build log turned into education and products, not a consulting shop.
 
 **How the pieces fit together:**
 
