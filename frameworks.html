@@ -419,6 +419,16 @@ footer { background: var(--navy); padding: 26px 0; }
     });
   });
 
+  function stripMarkdown(text){
+    return String(text)
+      .replace(/\*\*(.*?)\*\*/g, '$1')
+      .replace(/\*(.*?)\*/g, '$1')
+      .replace(/^#{1,6}\s+/gm, '')
+      .replace(/^[-*]\s+/gm, '')
+      .replace(/`([^`]*)`/g, '$1')
+      .replace(/\[(.*?)\]\(.*?\)/g, '$1')
+      .trim();
+  }
   function addMsg(text, cls){
     var d = document.createElement('div');
     d.className = 'rc-msg ' + cls;
@@ -443,7 +453,7 @@ footer { background: var(--navy); padding: 26px 0; }
       });
       var data = await res.json();
       loading.remove();
-      var reply = data.reply || 'Sorry, something went wrong. You can reach us on WhatsApp instead.';
+      var reply = stripMarkdown(data.reply || 'Sorry, something went wrong. You can reach us on WhatsApp instead.');
       addMsg(reply, 'rc-bot');
       history.push({role:'assistant', content:reply});
       speak(reply);

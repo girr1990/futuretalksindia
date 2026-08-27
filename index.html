@@ -779,6 +779,16 @@ document.querySelectorAll('.acc-trigger').forEach(function (btn) {
       else { chatView.style.display = 'none'; contactView.style.display = 'flex'; }
     });
   });
+  function stripMarkdown(text){
+    return String(text)
+      .replace(/\*\*(.*?)\*\*/g, '$1')
+      .replace(/\*(.*?)\*/g, '$1')
+      .replace(/^#{1,6}\s+/gm, '')
+      .replace(/^[-*]\s+/gm, '')
+      .replace(/`([^`]*)`/g, '$1')
+      .replace(/\[(.*?)\]\(.*?\)/g, '$1')
+      .trim();
+  }
   function addMsg(text, cls){
     var d = document.createElement('div');
     d.className = 'rc-msg ' + cls; d.textContent = text;
@@ -791,7 +801,7 @@ document.querySelectorAll('.acc-trigger').forEach(function (btn) {
     try {
       var res = await fetch('/.netlify/functions/nova', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({messages: history}) });
       var data = await res.json(); loading.remove();
-      var reply = data.reply || 'Sorry, something went wrong. You can reach us on WhatsApp instead.';
+      var reply = stripMarkdown(data.reply || 'Sorry, something went wrong. You can reach us on WhatsApp instead.');
       addMsg(reply, 'rc-bot'); history.push({role:'assistant', content:reply}); speak(reply);
     } catch(e) { loading.remove(); addMsg('Connection issue. Reach us directly on WhatsApp instead.', 'rc-bot'); }
   }
