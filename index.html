@@ -787,6 +787,9 @@ document.querySelectorAll('.acc-trigger').forEach(function (btn) {
       .replace(/^[-*]\s+/gm, '')
       .replace(/`([^`]*)`/g, '$1')
       .replace(/\[(.*?)\]\(.*?\)/g, '$1')
+      .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{2190}-\u{21FF}\u{2B00}-\u{2BFF}️]/gu, '')
+      .replace(/[ \t]{2,}/g, ' ')
+      .replace(/[ \t]+\n/g, '\n')
       .trim();
   }
   function addMsg(text, cls){
@@ -796,6 +799,7 @@ document.querySelectorAll('.acc-trigger').forEach(function (btn) {
   }
   async function sendMessage(){
     var text = input.value.trim(); if (!text) return;
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
     addMsg(text, 'rc-user'); history.push({role:'user', content:text}); input.value = '';
     var loading = addMsg('Thinking...', 'rc-bot rc-loading');
     try {
