@@ -1,4 +1,4 @@
-# FutureTalksIndia Project Context
+# FutureTalks India Project Context
 
 > **Applied AI for a Better Tomorrow**
 
@@ -16,7 +16,7 @@ When conflicts arise, this document takes precedence over assumptions.
 
 ## Company
 
-**Organization:** FutureTalksIndia Private Limited
+**Organization:** FutureTalks India Private Limited
 
 **Mission**
 
