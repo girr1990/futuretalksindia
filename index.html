@@ -198,6 +198,14 @@ footer { background: var(--navy); padding: 26px 0; }
 #rc-input { flex: 1; border: 1px solid var(--line-2); border-radius: 100px; padding: 10px 14px; font-size: 13.5px; font-family: var(--body); }
 #rc-input:focus { outline: none; border-color: var(--orange); }
 #rc-send { width: 38px; height: 38px; border-radius: 50%; background: var(--orange); color: #fff; border: none; cursor: pointer; font-size: 16px; flex-shrink: 0; }
+#rc-mic { width: 38px; height: 38px; border-radius: 50%; background: var(--cream-2); color: var(--navy); border: 1px solid var(--line-2); cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: background .2s, color .2s, border-color .2s; }
+#rc-mic:hover { background: var(--line); }
+#rc-mic.listening { background: var(--orange); color: #fff; border-color: var(--orange); animation: mic-pulse 1.2s infinite; }
+#rc-mic[hidden], #rc-voice-toggle[hidden] { display: none; }
+@keyframes mic-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(237,84,7,0.45); } 50% { box-shadow: 0 0 0 7px rgba(237,84,7,0); } }
+#rc-voice-toggle { background: none; border: none; color: #cdd4e3; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; transition: background .2s, color .2s; flex-shrink: 0; }
+#rc-voice-toggle:hover { background: rgba(255,255,255,0.12); }
+#rc-voice-toggle[aria-pressed="true"] { color: var(--gold); }
 #rc-contact-view { padding: 16px; display: none; flex-direction: column; gap: 10px; overflow-y: auto; }
 .rc-contact-lead { font-size: 13px; color: var(--text-dim); margin-bottom: 4px; }
 #rc-contact-view input, #rc-contact-view select, #rc-contact-view textarea { border: 1px solid var(--line-2); border-radius: 8px; padding: 10px 12px; font-size: 13.5px; font-family: var(--body); width: 100%; }
@@ -503,7 +511,7 @@ footer { background: var(--navy); padding: 26px 0; }
 
 <footer>
   <div class="wrap foot-inner">
-    <span class="mono">&copy; FuturetalksIndia Private Limited. All rights reserved.</span>
+    <span class="mono">&copy; FutureTalks India Private Limited. All rights reserved.</span>
     <div class="foot-links">
       <a href="mailto:futuretalks.india@gmail.com">Email</a>
       <a href="https://wa.me/919008020176" target="_blank" rel="noopener">WhatsApp</a>
@@ -538,7 +546,12 @@ footer { background: var(--navy); padding: 26px 0; }
         </svg>
         <div><div id="rc-title">Nova</div><div id="rc-sub">FutureTalks India assistant</div></div>
       </div>
-      <button id="rc-close" aria-label="Close chat">&times;</button>
+      <div style="display:flex; align-items:center; gap:2px;">
+        <button id="rc-voice-toggle" type="button" aria-label="Hear Nova's replies out loud" aria-pressed="false" title="Hear replies out loud" hidden>
+          <svg id="rc-voice-icon" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 10v4h4l5 5V5L7 10H3zm12.59 4L18 11.59 20.41 14 21.83 12.59 19.41 10.17 21.83 7.76 20.41 6.34 18 8.76 15.59 6.34 14.17 7.76 16.59 10.17 14.17 12.59z"/></svg>
+        </button>
+        <button id="rc-close" aria-label="Close chat">&times;</button>
+      </div>
     </div>
     <div id="rc-tabs">
       <button class="rc-tab active" data-tab="chat">Chat</button>
@@ -547,6 +560,9 @@ footer { background: var(--navy); padding: 26px 0; }
     <div id="rc-chat-view">
       <div id="rc-messages"><div class="rc-msg rc-bot">Hi, I'm Nova. Ask me anything about FutureTalks India, Buddy, or our frameworks.</div></div>
       <div id="rc-input-row">
+        <button id="rc-mic" type="button" aria-label="Speak your question" aria-pressed="false" title="Speak instead of typing" hidden>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 15c1.66 0 3-1.34 3-3V6c0-1.66-1.34-3-3-3S9 4.34 9 6v6c0 1.66 1.34 3 3 3zm5-3c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-2.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
+        </button>
         <input id="rc-input" type="text" placeholder="Type a question..." />
         <button id="rc-send" aria-label="Send">&rarr;</button>
       </div>
@@ -689,9 +705,72 @@ document.querySelectorAll('.acc-trigger').forEach(function (btn) {
   var messages = document.getElementById('rc-messages');
   var input = document.getElementById('rc-input');
   var sendBtn = document.getElementById('rc-send');
+  var micBtn = document.getElementById('rc-mic');
+  var voiceToggle = document.getElementById('rc-voice-toggle');
+  var voiceIcon = document.getElementById('rc-voice-icon');
   var waBtn = document.getElementById('rc-whatsapp-btn');
+
+  // VOICE INPUT (speak to Nova)
+  var SpeechRecognitionCtor = window.SpeechRecognition || window.webkitSpeechRecognition;
+  var recognition = null;
+  var listening = false;
+  if (SpeechRecognitionCtor) {
+    recognition = new SpeechRecognitionCtor();
+    recognition.lang = 'en-IN';
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+    micBtn.hidden = false;
+    recognition.onstart = function () {
+      listening = true;
+      micBtn.classList.add('listening');
+      micBtn.setAttribute('aria-pressed', 'true');
+      input.placeholder = 'Listening...';
+    };
+    recognition.onresult = function (e) {
+      var transcript = e.results[0][0].transcript;
+      input.value = transcript;
+      sendMessage();
+    };
+    recognition.onerror = function () {
+      addMsg('Could not hear that. Try again or type your question.', 'rc-bot');
+    };
+    recognition.onend = function () {
+      listening = false;
+      micBtn.classList.remove('listening');
+      micBtn.setAttribute('aria-pressed', 'false');
+      input.placeholder = 'Type a question...';
+    };
+    micBtn.addEventListener('click', function () {
+      if (listening) { recognition.stop(); } else { recognition.start(); }
+    });
+  }
+
+  // VOICE OUTPUT (hear Nova's replies)
+  var voiceOn = false;
+  var speakerOnPath = 'M3 10v4h4l5 5V5L7 10H3zm13.5 2c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03z';
+  var speakerOffPath = 'M3 10v4h4l5 5V5L7 10H3zm12.59 4L18 11.59 20.41 14 21.83 12.59 19.41 10.17 21.83 7.76 20.41 6.34 18 8.76 15.59 6.34 14.17 7.76 16.59 10.17 14.17 12.59z';
+  if (window.speechSynthesis) {
+    voiceToggle.hidden = false;
+    try { voiceOn = localStorage.getItem('fti_nova_voice') === 'on'; } catch (e) {}
+    if (voiceOn) { voiceToggle.setAttribute('aria-pressed', 'true'); voiceIcon.innerHTML = '<path d="' + speakerOnPath + '"></path>'; }
+    voiceToggle.addEventListener('click', function () {
+      voiceOn = !voiceOn;
+      voiceToggle.setAttribute('aria-pressed', String(voiceOn));
+      voiceIcon.innerHTML = '<path d="' + (voiceOn ? speakerOnPath : speakerOffPath) + '"></path>';
+      try { localStorage.setItem('fti_nova_voice', voiceOn ? 'on' : 'off'); } catch (e) {}
+      if (!voiceOn) { window.speechSynthesis.cancel(); }
+    });
+  }
+  function speak(text) {
+    if (!voiceOn || !window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    var utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 1;
+    window.speechSynthesis.speak(utterance);
+  }
+
   toggle.addEventListener('click', function(){ panel.classList.toggle('open'); });
-  closeBtn.addEventListener('click', function(){ panel.classList.remove('open'); });
+  closeBtn.addEventListener('click', function(){ panel.classList.remove('open'); if (window.speechSynthesis) window.speechSynthesis.cancel(); if (listening) recognition.stop(); });
   tabs.forEach(function(tab){
     tab.addEventListener('click', function(){
       tabs.forEach(function(t){ t.classList.remove('active'); });
@@ -713,7 +792,7 @@ document.querySelectorAll('.acc-trigger').forEach(function (btn) {
       var res = await fetch('/.netlify/functions/nova', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({messages: history}) });
       var data = await res.json(); loading.remove();
       var reply = data.reply || 'Sorry, something went wrong. You can reach us on WhatsApp instead.';
-      addMsg(reply, 'rc-bot'); history.push({role:'assistant', content:reply});
+      addMsg(reply, 'rc-bot'); history.push({role:'assistant', content:reply}); speak(reply);
     } catch(e) { loading.remove(); addMsg('Connection issue. Reach us directly on WhatsApp instead.', 'rc-bot'); }
   }
   sendBtn.addEventListener('click', sendMessage);
